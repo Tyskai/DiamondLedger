@@ -2,6 +2,9 @@
 # Collect all transactions and validate them
 # After validation Transaction pool updates transaction state -- sends invocation to client
 from Diamond_Ledger import Transaction
+def search_dictionaries(key, value, list_of_dictionaries):
+    return [element for element in list_of_dictionaries if element[key] == value]
+
 class TransactionPool:
 
     def __init__(self):
@@ -9,18 +12,17 @@ class TransactionPool:
 
     def addTransaction(self,transaction):
         # first validate transaction then add
-        TransactionPool.validateTransaction(self,transaction)
+        #TransactionPool.validateTransaction(self,transaction)
         self.pool.append(transaction)
 
-    def validateTransaction(self,transaction):
+    def validateTransaction(self,transaction,state):
+            #dOwner = {"Diamond":transaction["Diamond"],"Current Owner":transaction["Current Owner"]}
+            if not (element for element in state.getState() if element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
+                print("Transaction is not valid")
+                return False
             transaction["Valid"] = True
             #print("Transaction is validated")
-            pass
-            # check if there is an empty element in the directory
-            # if there is then return false with a error message
-            #if all the features are proper change transaction state to true
-            # update it alson on client side
-            # transaction["Valid"]=return validateTransaction
+            return True
 
     def getTransactionPool(self):
         return self.pool

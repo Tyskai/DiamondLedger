@@ -5,7 +5,7 @@
 # Leader generates the candidate block and sends it to all other participants of consensus process
 # if enough number of peers validate the candidate block, it can be declared as valid block and added to the ledger
 import hashlib
-from Diamond_Ledger import Block
+from Diamond_Ledger import Block , TransactionPool
 
 
 def createHash(message=""):
@@ -31,7 +31,12 @@ class Consensus:
     def findLeader(self,listofPeers):
         pass
 
-    def validateCandidateBlock(self,candidateBlock,chain):
+    def validateCandidateBlock(self,candidateBlock,chain,state):
+        transactions = candidateBlock.getTransactions()
+        for i in range(len(transactions)):
+            if not TransactionPool.validateTransaction(self, transactions[i],state):
+                print("Transaction is not valid")
+                return False
         blockContents = "{0}{1}{2}".format(str(candidateBlock.parentHash),str(candidateBlock.blockOrder),str(candidateBlock.transactions))
         if candidateBlock.blockHash != createHash(blockContents):
             print("Block hash is not match!! Invalid Block!!")

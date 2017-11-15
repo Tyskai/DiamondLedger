@@ -39,6 +39,9 @@ class Block:
             print("{0}.{1}".format(i,self.transactions[i]))
         print("\n")
 
+    def getTransactions(self):
+        return self.transactions
+
 #b = Block()
 #print(b.printBlock())
 
