@@ -1,5 +1,5 @@
 # Test program
-from Diamond_Ledger import Client
+from Diamond_Ledger import Client,State
 from Diamond_Ledger import TransactionPool,Diamond,Block
 import random
 
@@ -25,17 +25,21 @@ for j in range(25):
     r = random.randint(1,7)
     diamonds.append(Diamond(r,r,r,r,location[r-1],True))
 
-state = list()
+state = State.State()
+ownership = list()
 for i in range(len(clientList)):
-    state.append({"Diamond":diamonds[i],"Owner":clientList[i].getPublicKey()})
+    ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getPublicKey()})
     #print(initialState[i])
 
 # create transactions
+
+state.initializeState(ownership)
+#state.printState()
+
 for k in range(20):
     clientList[k].createTransaction(diamonds[k],clientList[k+1].getPublicKey(),transactionPool)
     transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state)
     # update state
-
 
 # validate transactions
 
@@ -57,7 +61,9 @@ while len(transactionPool) != 0:
     if sum(votes) > (len(clientList)/2)+1:
         #print("Block is valid!!")
         chain.append(candidateBlock)
+        state.updateState(transactionPool)
         transactionPool.removeTransactions()
+        #state.printState()
 
 for i in range(len(chain)):
     chain[i].printBlock()
