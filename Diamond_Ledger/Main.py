@@ -70,3 +70,5 @@ while len(transactionPool) != 0:
 
 for i in range(len(chain)):
     chain[i].printBlock()
+
+

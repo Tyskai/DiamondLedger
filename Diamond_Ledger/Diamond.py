@@ -32,7 +32,8 @@ class Diamond:
         print("ID: {0}\nColor: {1}\nClarity: {2}\nCut: {3}\nCarat: {4}\nOrigin: {5}\nNatural: {6}".format(str(self.uID),
                                             str(self.color), str(self.clarity), str(self.cut), str(self.carat),
                                             str(self.origin), str(self.isNatural)))
-
+    def getDID(self):
+        return self.uID
 
 #d = Diamond(3,3,4,5,"Indonesia",True)
 #d2 = Diamond(3,3,4,5,"Indonesia",True)

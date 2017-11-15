@@ -16,8 +16,15 @@ class Transaction:
         pool.addTransaction(self.transaction)
 
 # Query a diamond
-    def queryDiamond(self,dID):
-        pass
+    def queryDiamond(self,ID,chain):
+        transactionList = list()
+        for i in range(len(chain)):
+            transactions = chain[i].getTransactions()
+            for j in range(len(transactions)):
+                #print(transactions[j]["Current Owner"],id)
+                if ID == transactions[j]["Diamond"].getDID() or ID == transactions[j]["Current Owner"]:
+                    transactionList.append((ID,transactions[j]["Next Owner"]))
+        return transactionList
 
 
 
