@@ -2,3 +2,7 @@
 *.pyc
 *.iml
 *.xml
+.idea/DiamondLedger.iml
+.idea/DiamondLedger.iml
+.idea/workspace.xml
+.idea/misc.xml

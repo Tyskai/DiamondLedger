@@ -2,8 +2,6 @@
 # Collect all transactions and validate them
 # After validation Transaction pool updates transaction state -- sends invocation to client
 from Diamond_Ledger import Transaction
-
-
 class TransactionPool:
 
     def __init__(self):
