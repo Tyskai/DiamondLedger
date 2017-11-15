@@ -17,21 +17,22 @@ for i in range(21):
     clientList.append(Client())
 
 # define initial state ( ownership )
-# initially there are 6 diamonds
+# initially there are 25 diamonds
 
-location = ["Netherlands","Germany","France","Spain","Polland","Finland","Swiss"]
+location = ["Netherlands","Germany","France","Spain","Poland","Finland","Swiss"]
 diamonds = list()
 for j in range(25):
     r = random.randint(1,7)
     diamonds.append(Diamond(r,r,r,r,location[r-1],True))
 
-initialState = list()
+state = list()
 for i in range(len(clientList)):
-    initialState.append({"Diamond":diamonds[i%6],"Owner":clientList[i].getPublicKey()})
+    state.append({"Diamond":diamonds[i],"Owner":clientList[i].getPublicKey()})
     #print(initialState[i])
 # create transactions
 for k in range(20):
-    clientList[k].createTransaction(diamonds[k%6],clientList[k+1].getPublicKey(),transactionPool)
+    clientList[k].createTransaction(diamonds[k],clientList[k+1].getPublicKey(),transactionPool)
+    transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state)
     # update state
 
 
@@ -50,7 +51,7 @@ while len(transactionPool) != 0:
 
     # voting the candidate block
     for i in range(len(validators)):
-        votes.append(validators[i].validateCandidateBlock(candidateBlock,chain))
+        votes.append(validators[i].validateCandidateBlock(candidateBlock,chain,state))
 
     if sum(votes) > (len(clientList)/2)+1:
         #print("Block is valid!!")
