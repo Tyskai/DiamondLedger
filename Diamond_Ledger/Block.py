@@ -42,6 +42,14 @@ class Block:
     def getTransactions(self):
         return self.transactions
 
+    #Check if a given diamond exists in a block
+    def diamondExists(self, diamond):
+        for t in self.transactions:
+            if diamond == t["Diamond"]:
+                return True
+        return False
+
+
 #b = Block()
 #print(b.printBlock())
 
