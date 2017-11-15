@@ -29,6 +29,7 @@ state = list()
 for i in range(len(clientList)):
     state.append({"Diamond":diamonds[i],"Owner":clientList[i].getPublicKey()})
     #print(initialState[i])
+
 # create transactions
 for k in range(20):
     clientList[k].createTransaction(diamonds[k],clientList[k+1].getPublicKey(),transactionPool)

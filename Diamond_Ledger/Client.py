@@ -12,6 +12,7 @@ class Client:
         self.trans = Transaction()
         #self.diamond = Diamond() # check again
         self.cons = Consensus()
+        self.leader = False
 
     def createCandidateBlock(self,parentHash,transactionPool):
         return self.cons.createCandidateBlock(parentHash,transactionPool)
@@ -26,4 +27,13 @@ class Client:
         return self.keyPair.getPublicKey()
 
     def queryTransaction(self,diamond):
+        pass
+
+# Assign each client a wait time
+# Based on this wait time the leader will be chosen
+    def setWaitTime(self):
+        pass
+
+# change leader state
+    def setLeader(self,):
         pass
