@@ -4,7 +4,7 @@
 # Choose one peer as leader
 # Leader generates the candidate block and sends it to all other participants of consensus process
 # if enough number of peers validate the candidate block, it can be declared as valid block and added to the ledger
-import hashlib
+import hashlib, random
 from Diamond_Ledger import Block , TransactionPool
 
 
@@ -29,7 +29,11 @@ class Consensus:
 
 # Assign wait times choose the leader
     def findLeader(self,listofPeers):
-        pass
+        waitTime = list(range(1,len(listofPeers)))
+        random.shuffle(waitTime)
+        listofPeers[waitTime.index(min(waitTime))].setLeader(True)
+        return listofPeers[waitTime.index(min(waitTime))]
+
 
     def validateCandidateBlock(self,candidateBlock,chain,state):
         transactions = candidateBlock.getTransactions()

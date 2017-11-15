@@ -29,11 +29,6 @@ class Client:
     def queryTransaction(self,diamond):
         pass
 
-# Assign each client a wait time
-# Based on this wait time the leader will be chosen
-    def setWaitTime(self):
-        pass
-
 # change leader state
-    def setLeader(self,):
-        pass
+    def setLeader(self,bool):
+        self.leader = bool

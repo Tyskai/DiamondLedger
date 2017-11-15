@@ -1,7 +1,9 @@
 # Test program
-from Diamond_Ledger import Client,State
+from Diamond_Ledger import Client,State, Consensus
 from Diamond_Ledger import TransactionPool,Diamond,Block
 import random
+
+cons = Consensus()
 
 # create genesis block
 genesisBlock = Block()
@@ -38,17 +40,17 @@ state.initializeState(ownership)
 
 for k in range(20):
     clientList[k].createTransaction(diamonds[k],clientList[k+1].getPublicKey(),transactionPool)
+    # validate transactions
     transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state)
-    # update state
 
-# validate transactions
+
 
 # then generate blocks
 # consensus process : choose one of the clients as leader. Leader creates candidate block. If majority of the remaining
 # clients ( validators ) validate the candidate block, then it is added to the chain
 votes = list()
 while len(transactionPool) != 0:
-    leader = clientList[random.randint(0, 20)]
+    leader = cons.findLeader(clientList)
     validators = clientList.copy()
     validators.remove(leader)
     candidateBlock = leader.createCandidateBlock(chain[-1].getBlockHash(),transactionPool)
@@ -63,6 +65,7 @@ while len(transactionPool) != 0:
         chain.append(candidateBlock)
         state.updateState(transactionPool)
         transactionPool.removeTransactions()
+        leader.setLeader(False)
         #state.printState()
 
 for i in range(len(chain)):
