@@ -1,5 +1,5 @@
 # Test program
-from Diamond_Ledger import Client,State, Consensus
+from Diamond_Ledger import Client,State, Consensus, Demo
 from Diamond_Ledger import TransactionPool,Diamond,Block
 import random
 
@@ -70,3 +70,8 @@ while len(transactionPool) != 0:
 
 for i in range(len(chain)):
     chain[i].printBlock()
+
+(c,p) = Demo.demo(chain,transactionPool)
+chain = c
+transactionPool = p
+
