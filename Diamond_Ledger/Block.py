@@ -48,19 +48,18 @@ class Block:
     #Check if a given diamond exists in a block
     def diamondExists(self, diamond):
         for t in self.transactions:
-            if diamond == t["Diamond"]:
+            if diamond.getDID() == t["Diamond"].getDID():
+                print("Double diamond")
                 return True
         return False
 
     def findUser(self, userId):
-        trans = []
+        trans = list()
         for t in self.transactions:
             if userId == t["Current Owner"]:
                 trans = trans.append(t)
-                print("hi")
             elif userId == t["Next Owner"]:
                 trans = trans.append(t)
-                print("hi")
         return trans
 
 #b = Block()

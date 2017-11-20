@@ -4,7 +4,7 @@
 import hashlib
 dNumber = 0
 
-def createHash(message=""):
+def createHash(message):
     return hashlib.sha256(str(message).encode('utf-8')).hexdigest()
 
 
@@ -23,8 +23,7 @@ class Diamond:
         global dNumber
         dNumber += 1
 
-        message = "{0}{1}{2}{3}{4}{5}{6}".format(str(self.color), str(self.clarity), str(self.cut), str(self.carat),
-                                              str(self.origin), str(self.isNatural),str(dNumber))
+        message = "{0}{1}{2}{3}".format(str(self.color), str(self.clarity), str(self.cut), str(self.carat))
         self.uID = createHash(message)
 
 # Print Diamond Features

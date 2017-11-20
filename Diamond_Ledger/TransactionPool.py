@@ -16,12 +16,9 @@ class TransactionPool:
         self.pool.append(transaction)
 
     def validateTransaction(self,transaction,state):
-            #dOwner = {"Diamond":transaction["Diamond"],"Current Owner":transaction["Current Owner"]}
             if not (element for element in state.getState() if element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
                 print("Transaction is not valid")
                 return False
-            transaction["Valid"] = True
-            #print("Transaction is validated")
             return True
 
     # Valide all the transactions

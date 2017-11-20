@@ -18,9 +18,13 @@ def searchChainFindDiamond(diamond):
 # go though the chain, find a user Id and all his done/received transactions
 def searchChainFindUserId(userId):
     global chain
-    trans = []
-    for i in range(len(chain)):
-        trans.append(chain[i].findUser(userId))
+    trans = list()
+    emptyList = list()
+    for i in range(len(chain)+1):
+        lst = chain[i].findUser(userId)
+        if not(lst == emptyList):
+            trans.append(chain[i].findUser(userId))
+    return trans
 
 # Allows the user to register and add a diamond to the system
 def newUser():
@@ -37,7 +41,6 @@ def newUser():
     diamond = Diamond(dColor,dClarity,dCut,dCarat,dOrigin,dIsNatural)
     if searchChainFindDiamond(diamond):
         print("The diamond is already registered in the chain. Exit")
-        return(chain, transactionPool, [])
     else:
         print("The diamond was created succesfully!")
         diamond.printDiamond()
@@ -64,13 +67,30 @@ def login():
 
     print("Client is recognized, client public key is:")
     print(public)
-    print("What do you want to do \n 1. See your transactions \n 2. Do transaction \n q. quit")
+    print("What do you want to do \n 1. See your transactions \n 2. Do transaction \n 3. To add another Diamond \n q. quit")
     awnser = input("Type 1 or 2: ")
     if(awnser=="1"):
         print("Your transactions are:")
         print(searchChainFindUserId(public))
     elif(awnser=="2"):
         print("To whom do you want to do an transaction. TODO ")
+    elif(awnser=="3"):
+        print("You want to add another diamond. Specifiy your diamond please")
+        dColor = int(input("Diamond color (int): "))
+        dClarity = int(input("Diamond clarity: "))
+        dCut = int(input("Diamond cut: "))
+        dCarat = int(input("Diamond Carat: "))
+        dOrigin = input("Diamond country of Origin: ")
+        dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
+
+        diamond = Diamond(dColor, dClarity, dCut, dCarat, dOrigin, dIsNatural)
+        if searchChainFindDiamond(diamond):
+            print("The diamond is already registered in the chain. Exit")
+        else:
+            print("The diamond was created succesfully!")
+            diamond.printDiamond()
+            transaction = client.createTransaction(diamond, client.getPublicKey())
+            transactionPool.addTransaction(transaction)
     elif(awnser=="q"):
         print("Goodday!")
     else:
@@ -106,9 +126,9 @@ def demo():
     elif awnser == "q":
         print("Goodday")
     elif awnser == "chain":
-        print(chain)
+        printChain()
     elif awnser == "pool":
-        print(transactionPool.printPool())
+        transactionPool.printPool()
     else:
         print("Command was not recognised. Try again.")
         demo()
@@ -188,20 +208,12 @@ def mineBlocks():
 # Remove one transaction in the pool, so that the new user can add his diamond directly
 transactionPool.removeTransactions(1)
 
-print(transactionPool.printPool())
 mineBlocks()
 
-print("Chain before the Demo starts")
-printChain()
-
-print("Pool before start")
-print(transactionPool.printPool())
-
 # Start demo (do 3 times
-for i in range(0,3):
+for i in range(0,30):
+   print("\n\n DEMO \n\n")
    demo()
-   print("DEMO finished \n Update Chain, transactionPool and Clientlist \n Mine the blocks \n")
-
    mineBlocks()
 
 

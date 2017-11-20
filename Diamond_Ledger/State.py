@@ -6,8 +6,8 @@ class State:
     def __init__(self):
         self.state = list() # will be a list of all ownerships
 
-    def updateState(self,transactions):
-        for i in range(5):
+    def updateState(self,transactions, num = 5):
+        for i in range(num):
             t = transactions.getTransactionPool()[i]
             currentOwner = t["Current Owner"]
             diamond = t["Diamond"]
@@ -17,12 +17,9 @@ class State:
             nextOwnership = {"Diamond":diamond,"Owner":nextOwner}
 
             self.state.append(nextOwnership)
-            try:
+            if not (nextOwner == currentOwner):
                 self.state.remove(currentOwnership)
-                break
-            except ValueError:
-                a = "A new diamond is added to the system"
-                #print(a)
+
 
     def getState(self):
         return self.state
