@@ -11,9 +11,9 @@ class Transaction:
     #    self.isValid = False # at first creation transaction is not valid, later it will be validated
 
 # Change diamonds ownership -- later decide if pass diamond itself or its id
-    def createTransaction(self,diamond, currentOwner, nextOwner,pool): # returns a directory
+    def createTransaction(self,diamond, currentOwner, nextOwner): # returns a directory
         self.transaction = {"Diamond":diamond,"Current Owner":currentOwner,"Next Owner":nextOwner,"Valid":False}
-        pool.addTransaction(self.transaction)
+        return self.transaction
 
 # Query a diamond
     def queryDiamond(self,ID,chain):

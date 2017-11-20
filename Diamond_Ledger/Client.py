@@ -20,8 +20,8 @@ class Client:
     def validateCandidateBlock(self, candidateBlock, chain,state):
         return self.cons.validateCandidateBlock(candidateBlock,chain,state)
 
-    def createTransaction(self,diamond, nextOwner,pool):
-        self.trans.createTransaction(diamond,self.keyPair.getPublicKey(),nextOwner,pool)
+    def createTransaction(self,diamond, nextOwner):
+        return self.trans.createTransaction(diamond,self.keyPair.getPublicKey(),nextOwner)
 
     def getPublicKey(self):
         return self.keyPair.getPublicKey()

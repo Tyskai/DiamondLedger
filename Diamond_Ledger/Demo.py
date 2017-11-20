@@ -1,39 +1,27 @@
 import sys
-from Diamond_Ledger import Diamond, Client
+from Diamond_Ledger import Diamond, Client, Main
 
 def str2bool(v):
   return v.lower() in ("true", "t", "1")
 
 # go through the chain, find a given diamond
-def searchChainFindDiamond(chain,diamond):
+def searchChainFindDiamond(diamond):
+    global chain
     for i in range(len(chain)):
         if chain[i].diamondExists(diamond):
             return True
     return False
 
 # go though the chain, find a user Id and all his done/received transactions
-def searchChainFindUserId(chain, userId):
+def searchChainFindUserId(userId):
+    global chain
     trans = []
     for i in range(len(chain)):
         trans.append(chain[i].findUser(userId))
 
-# start the demo, user can either, create an acoount, or login
-def demo(chain, transactionpool, clientlist=[]):
-    print("Welcome to Secure Diamonds Trade \nWhat wouly like to do \n  1. Create an account and add a Diamond \n  2. Login to your account \n q. to quit the menu")
-    awnser = input("Type 1 or 2: ")
-    if awnser == "1":
-        return newUser(chain, transactionpool)
-    elif awnser == "2":
-        return login(chain, transactionpool)
-    elif awnser == "q":
-        print("Goodday")
-    else:
-        print("Command was not recognised. Try again.")
-        return demo(chain, transactionpool, [])
-    return (chain, transactionpool, [])
-
 # Allows the user to register and add a diamond to the system
-def newUser(chain,pool):
+def newUser():
+    global chain, transactionPool
     print("Welcome new user \n Please specify your diamond.")
 
     dColor = int(input("Diamond color (int): "))
@@ -44,25 +32,26 @@ def newUser(chain,pool):
     dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
 
     diamond = Diamond(dColor,dClarity,dCut,dCarat,dOrigin,dIsNatural)
-    if searchChainFindDiamond(chain,diamond):
+    if searchChainFindDiamond(diamond):
         print("The diamond is already registered in the chain. Exit")
+        return(chain, transactionPool, [])
     else:
         print("The diamond was created succesfully!")
         diamond.printDiamond()
 
         client = Client()
-        transaction = client.createTransaction(diamond,client,pool)
-        pool.addTransaction(transaction)
+        transaction = client.createTransaction(diamond,client.getPublicKey())
+        transactionPool.addTransaction(transaction)
         # Save the keys locally
         writeKeysToFile(client.getPublicKey(), client.getPrivateKey())
         print("Clients public key:")
         print(client.getPublicKey())
         print("(Is also saved in publicKey.txt. \n Private key is saved in privateKey.txt \n We will now send you back to the main menu \n\n")
 
-    return (chain, pool, [client])
 
 # Client loges in and can either see his transactions or do a transaction
-def login(chain, pool):
+def login():
+    global chain
     #Read the public and private key from the files
     #recreate the client with those keys
     print("Read public and private key from file")
@@ -76,16 +65,14 @@ def login(chain, pool):
     awnser = input("Type 1 or 2: ")
     if(awnser=="1"):
         print("Your transactions are:")
-        print(searchChainFindUserId(chain,public))
+        print(searchChainFindUserId(public))
     elif(awnser=="2"):
         print("To whom do you want to do an transaction. TODO ")
     elif(awnser=="q"):
         print("Goodday!")
-        return(chain, pool)
     else:
         print("command was not regocnized. Please try again.")
-        return login(chain,pool)
-    return (chain, pool, [])
+        login()
 
 def readKeysFromFile():
     text_file = open("publicKey.txt", "r")
@@ -103,3 +90,18 @@ def writeKeysToFile(public, private):
     text_file = open("privateKey.txt", "w")
     text_file.write(private)
     text_file.close()
+
+# start the demo, user can either, create an acoount, or login
+def demo():
+    global chain, transactionPool, ClientList
+    print("Welcome to Secure Diamonds Trade \nWhat wouly like to do \n  1. Create an account and add a Diamond \n  2. Login to your account \n q. to quit the menu")
+    awnser = input("Type 1 or 2: ")
+    if awnser == "1":
+        newUser()
+    elif awnser == "2":
+        login()
+    elif awnser == "q":
+        print("Goodday")
+    else:
+        print("Command was not recognised. Try again.")
+        demo()

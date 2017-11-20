@@ -18,8 +18,12 @@ class Consensus:
     def createCandidateBlock(self,parentHash,transactionPool):
         self.transactions = list()
         for i in range(5):
+
             if transactionPool.getTransactionPool()[i]["Valid"]:
                 self.transactions.append(transactionPool.getTransactionPool()[i]) # Transactions can be validated again
+            else:
+                transactionPool.getTransactionPool()[i]
+
     # get parent hash some where
 
         block = Block()

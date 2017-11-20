@@ -24,6 +24,12 @@ class TransactionPool:
             #print("Transaction is validated")
             return True
 
+    # Valide all the transactions
+    def validateTransactionS(self, state):
+        for t in self.pool:
+            if t["Valid"] == False:
+                t["Valid"] = self.validateTransaction(t,state)
+
     def getTransactionPool(self):
         return self.pool
 
@@ -32,3 +38,7 @@ class TransactionPool:
 
     def __len__(self):
         return len(self.pool)
+
+    def printPool(self):
+        for i in self.pool:
+            print(i)
