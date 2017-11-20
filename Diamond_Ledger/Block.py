@@ -61,14 +61,3 @@ class Block:
             elif userId == t["Next Owner"]:
                 trans = trans.append(t)
         return trans
-
-#b = Block()
-#print(b.printBlock())
-
-#b2 = Block()
-#b2.newBlock(b.blockHash,[{"Diamond":"","Owner":1234565432}])
-#print(b2.printBlock())
-
-#b3 = Block()
-#b3.newBlock(b2.blockHash,[{"Diamond":"pnk","Owner":456789789}])
-#print(b3.printBlock())

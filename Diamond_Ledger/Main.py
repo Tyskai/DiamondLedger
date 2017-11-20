@@ -20,10 +20,9 @@ def searchChainFindUserId(userId):
     global chain
     trans = list()
     emptyList = list()
-    for i in range(len(chain)+1):
-        lst = chain[i].findUser(userId)
-        if not(lst == emptyList):
-            trans.append(chain[i].findUser(userId))
+    for i in range(len(chain)):
+        trans.append(chain[i].findUser(userId))
+        print(i)
     return trans
 
 # Allows the user to register and add a diamond to the system
