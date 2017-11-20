@@ -26,9 +26,15 @@ class Client:
     def getPublicKey(self):
         return self.keyPair.getPublicKey()
 
+    def getPrivateKey(self):
+        return self.keyPair.getPrivateKey()
+
     def queryTransaction(self,id,chain):
         return self.trans.queryDiamond(id,chain)
         pass
+
+    def setKeyPair(self, public, private):
+        self.keyPair.setKeyPair(public, private)
 
 # change leader state
     def setLeader(self,bool):

@@ -26,10 +26,3 @@ class Transaction:
                     transactionList.append((ID,transactions[j]["Next Owner"]))
         return transactionList
 
-
-
-#pool = TransactionPool()
-#t = Transaction()
-#d = Diamond(2,2,3,4,"Alasca",True)
-#t.createTransaction(d,234567654,23456543,pool)
-#print(pool.getTransactionPool())

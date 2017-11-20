@@ -24,10 +24,10 @@ class Key:
 # Generate key pairs, seed might bee taken from client
     def __init__(self):
         self.privKey = random.randrange(1,N-1)
-        print("priveKey: ",self.privKey)
+        #print("priveKey: ",self.privKey)
         xPublicKey, yPublicKey = EcPointMultiplication(GenX,GenY,self.privKey)
         finalPublicKey = xPublicKey,yPublicKey
-        print("finalpublickey: ", finalPublicKey) 
+        #print("finalpublickey: ", finalPublicKey)
         self.publicKey = createHash(str(finalPublicKey))
 
     def getPrivateKey(self):
@@ -35,6 +35,10 @@ class Key:
 
     def getPublicKey(self):
         return self.publicKey
+
+    def setKeyPair(self, publicKey, privateKey):
+        self.publicKey = publicKey
+        self.privKey = privateKey
     
 #random integer that is needed to sign the message
 RandNum = random.randrange(1,N-1)
@@ -119,4 +123,4 @@ print(r==x)
 """
 
 k = Key()
-print(k.getPublicKey(),"\n", k.getPrivateKey())
+#print(k.getPublicKey(),"\n", k.getPrivateKey())

@@ -27,8 +27,8 @@ class TransactionPool:
     def getTransactionPool(self):
         return self.pool
 
-    def removeTransactions(self):
-        del self.pool[0:5]
+    def removeTransactions(self, num = 5):
+        del self.pool[0:num]
 
     def __len__(self):
         return len(self.pool)

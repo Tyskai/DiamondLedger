@@ -17,8 +17,12 @@ class State:
             nextOwnership = {"Diamond":diamond,"Owner":nextOwner}
 
             self.state.append(nextOwnership)
-            self.state.remove(currentOwnership)
-
+            try:
+                self.state.remove(currentOwnership)
+                break
+            except ValueError:
+                a = "A new diamond is added to the system"
+                #print(a)
 
     def getState(self):
         return self.state
