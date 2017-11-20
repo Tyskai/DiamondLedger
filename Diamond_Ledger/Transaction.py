@@ -4,6 +4,7 @@
 # queryDiamond() -> track a diamond on ledger ( for tracking ownership or validation)
 from Diamond_Ledger import TransactionPool
 from Diamond_Ledger import Diamond
+import hashlib
 
 class Transaction:
 
@@ -12,7 +13,10 @@ class Transaction:
 
 # Change diamonds ownership -- later decide if pass diamond itself or its id
     def createTransaction(self,diamond, currentOwner, nextOwner): # returns a directory
-        self.transaction = {"Diamond":diamond,"Current Owner":currentOwner,"Next Owner":nextOwner,"Valid":False}
+        header = hashlib.sha256(diamond.getDiamond().encode('utf-8')).hexdigest() + currentOwner + nextOwner
+        self.transaction = {"Header": header, "Diamond": diamond, "Current Owner": currentOwner, "Next Owner": nextOwner,
+                            "Valid": False}
+        #self.transaction = {"Diamond":diamond,"Current Owner":currentOwner,"Next Owner":nextOwner,"Valid":False}
         return self.transaction
 
 # Query a diamond

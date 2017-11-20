@@ -45,7 +45,7 @@ def newUser():
         diamond.printDiamond()
 
         client = Client()
-        transaction = client.createTransaction(diamond,client.getPublicKey())
+        transaction = client.createTransaction(diamond,client.getAddress())
         transactionPool.addTransaction(transaction)
         # Save the keys locally
         writeKeysToFile(client.getPublicKey(), client.getPrivateKey())
@@ -65,7 +65,7 @@ def login():
     client.setKeyPair(public, private)
 
     print("Client is recognized, client public key is:")
-    print(public)
+    print("{} {}".format(public[0],public[1]))
     print("What do you want to do \n 1. See your transactions \n 2. Do transaction \n 3. To add another Diamond \n q. quit")
     awnser = input("Type 1 or 2: ")
     if(awnser=="1"):
@@ -88,7 +88,7 @@ def login():
         else:
             print("The diamond was created succesfully!")
             diamond.printDiamond()
-            transaction = client.createTransaction(diamond, client.getPublicKey())
+            transaction = client.createTransaction(diamond, client.getAddress())
             transactionPool.addTransaction(transaction)
     elif(awnser=="q"):
         print("Goodday!")
@@ -106,8 +106,9 @@ def readKeysFromFile():
     return (publicKey, privateKey)
 
 def writeKeysToFile(public, private):
+    print(public)
     text_file = open("publicKey.txt", "w")
-    text_file.write(public)
+    text_file.write(''.join('{0},{1}'.format(public[0],public[1])))
     text_file.close()
     text_file = open("privateKey.txt", "w")
     text_file.write(private)
@@ -163,15 +164,15 @@ for j in range(25):
     diamonds.append(Diamond(r,r,r,r,location[r-1],True))
 
 # Generate a state, which knows for every diamond which client is the owner.
-state = State.State()
+state = State()
 ownership = list()
 for i in range(len(clientList)):
-    ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getPublicKey()})
+    ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getAddress()})
 state.initializeState(ownership)
 
 # Generate 20 valid transactions
 for k in range(20):
-    transaction = clientList[k].createTransaction(diamonds[k],clientList[k+1].getPublicKey())
+    transaction = clientList[k].createTransaction(diamonds[k],clientList[k+1].getAddress())
     # validate transactions
     transactionPool.addTransaction(transaction)
     transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state)

@@ -26,19 +26,58 @@ class Key:
         self.privKey = random.randrange(1,N-1)
         #print("priveKey: ",self.privKey)
         xPublicKey, yPublicKey = EcPointMultiplication(GenX,GenY,self.privKey)
-        finalPublicKey = xPublicKey,yPublicKey
+        self.finalPublicKey = xPublicKey,yPublicKey
         #print("finalpublickey: ", finalPublicKey)
-        self.publicKey = createHash(str(finalPublicKey))
+        self.address = createHash(str(self.finalPublicKey))
+
+    def getAddress(self):
+        return self.address
 
     def getPrivateKey(self):
         return str(self.privKey) # check after changing the rand function
 
     def getPublicKey(self):
-        return self.publicKey
+        return self.finalPublicKey
 
     def setKeyPair(self, publicKey, privateKey):
-        self.publicKey = publicKey
+        self.finalPublicKey = publicKey
         self.privKey = privateKey
+
+        # Elliptic curve signature
+    def sign(self, messageHash):
+        lenN = N.bit_length()
+        z = int(messageHash[0:lenN], 16)
+        xSignPoint, ySignPoint = EcPointMultiplication(GenX, GenY, RandNum)
+        r = xSignPoint % N  # check r if r=0
+        inv = modularinverse(RandNum, N)
+        s = (modularinverse(inv) * (z + r * self.privKey)) % N  # check s if s=0
+        return r, s
+
+        # Verify signature
+    def verify(self, messageHash, signature):  # check if you really need public key
+        """
+        if N*publicKey == 0:
+            print("Public Key is Not Valid")
+        # add other checks realted with public key
+        """
+        if not (signature[0] in range(1, N - 1) and signature[1] in range(1, N - 1)):
+            print("Not a valid signature!!")
+            return False
+        z = messageHash[0:N.bit_length()]
+        w = modularinverse(signature[1], N)
+        u_1 = (z * w) % N
+        u_2 = (signature[0] * w) % N
+
+        xu_1, yu_1 = EcPointMultiplication(GenX, GenY, u_1)
+        xu_2, yu_2 = EcPointMultiplication(GenX, GenY, u_2)
+
+        x, y = PointAddition(xu_1, yu_1, xu_2, yu_2)
+
+        if x == signature[0]:
+            return True
+        else:
+            print("Signature is invalid")
+            return False
     
 #random integer that is needed to sign the message
 RandNum = random.randrange(1,N-1)

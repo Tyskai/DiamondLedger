@@ -21,7 +21,13 @@ class Client:
         return self.cons.validateCandidateBlock(candidateBlock,chain,state)
 
     def createTransaction(self,diamond, nextOwner):
-        return self.trans.createTransaction(diamond,self.keyPair.getPublicKey(),nextOwner)
+        transaction = self.trans.createTransaction(diamond,self.keyPair.getAddress(),nextOwner)
+        signature = hashlib.sha256(transaction["Header"].encode('utf-8')).hexdigest()  # find a signature algorithm
+        transaction["Signature"] = self.keyPair.sign(signature)
+        return transaction
+
+    def getAddress(self):
+        return self.keyPair.getAddress()
 
     def getPublicKey(self):
         return self.keyPair.getPublicKey()
