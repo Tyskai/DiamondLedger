@@ -72,23 +72,14 @@ mineBlocks(chain, transactionPool, clientList, state)
 print("Chain before the Demo starts")
 printChain(chain)
 
-# Start demo
-(c,p,cList) = Demo.demo(chain,transactionPool)
-print("DEMO1 DONE \n \n \n")
-chain = c
-transactionPool = p
-clientList = clientList + cList
+# Start demo (do 3 times
+for i in range(0,3):
+   (c,p,cList) = Demo.demo(chain,transactionPool)
+   print("DEMO finished \n Update Chain, transactionPool and Clientlist \n Mine the blocks \n")
+   chain = c
+   transactionPool = p
+   clientList = clientList + cList
 
-mineBlocks(chain, transactionPool, clientList, state)
+   mineBlocks(chain, transactionPool, clientList, state)
 
-printChain(chain)
-
-(c,p,cList) = Demo.demo(chain,transactionPool)
-print("DEMO2 DONE \n \n \n")
-chain = c
-transactionPool = p
-clientList = clientList + cList
-
-mineBlocks(chain, transactionPool, clientList, state)
-
-printChain(chain)
+   printChain(chain)

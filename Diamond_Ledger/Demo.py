@@ -4,19 +4,22 @@ from Diamond_Ledger import Diamond, Client
 def str2bool(v):
   return v.lower() in ("true", "t", "1")
 
+# go through the chain, find a given diamond
 def searchChainFindDiamond(chain,diamond):
     for i in range(len(chain)):
         if chain[i].diamondExists(diamond):
             return True
     return False
 
+# go though the chain, find a user Id and all his done/received transactions
 def searchChainFindUserId(chain, userId):
     trans = []
     for i in range(len(chain)):
         trans.append(chain[i].findUser(userId))
 
+# start the demo, user can either, create an acoount, or login
 def demo(chain, transactionpool, clientlist=[]):
-    print("Welcome to Secure Diamonds Trade \nWhat wouly like to do \n  1. Create an account \n  2. Login to your account \n q. to quit the menu")
+    print("Welcome to Secure Diamonds Trade \nWhat wouly like to do \n  1. Create an account and add a Diamond \n  2. Login to your account \n q. to quit the menu")
     awnser = input("Type 1 or 2: ")
     if awnser == "1":
         return newUser(chain, transactionpool)
@@ -29,7 +32,7 @@ def demo(chain, transactionpool, clientlist=[]):
         return demo(chain, transactionpool, [])
     return (chain, transactionpool, [])
 
-#Allows the user to register and add a diamond to the system
+# Allows the user to register and add a diamond to the system
 def newUser(chain,pool):
     print("Welcome new user \n Please specify your diamond.")
 
@@ -58,6 +61,7 @@ def newUser(chain,pool):
 
     return (chain, pool, [client])
 
+# Client loges in and can either see his transactions or do a transaction
 def login(chain, pool):
     #Read the public and private key from the files
     #recreate the client with those keys
@@ -80,7 +84,7 @@ def login(chain, pool):
         return(chain, pool)
     else:
         print("command was not regocnized. Please try again.")
-        return (login(chain,pool))
+        return login(chain,pool)
     return (chain, pool, [])
 
 def readKeysFromFile():
