@@ -1,6 +1,8 @@
+import itertools
 from Diamond_Ledger import Client,State, Consensus
 from Diamond_Ledger import TransactionPool,Diamond,Block
 import random
+from ast import literal_eval as make_tuple
 
 ### Functions needed for the Demo
 
@@ -19,11 +21,10 @@ def searchChainFindDiamond(diamond):
 def searchChainFindUserId(userId):
     global chain
     trans = list()
-    emptyList = list()
     for i in range(len(chain)):
         trans.append(chain[i].findUser(userId))
-        print(i)
-    return trans
+    merge = list(itertools.chain.from_iterable(trans))
+    return merge
 
 # Allows the user to register and add a diamond to the system
 def newUser():
@@ -47,13 +48,16 @@ def newUser():
         client = Client()
         transaction = client.createTransaction(diamond,client.getAddress())
         transactionPool.addTransaction(transaction)
+        print("Your transaction is:")
+        print(transaction)
         # Save the keys locally
         writeKeysToFile(client.getPublicKey(), client.getPrivateKey())
         clientKey.append((client.getAddress(),client.getPublicKey()))
         print("Clients public key:")
         print(client.getPublicKey())
-        print("(Is also saved in publicKey.txt. \n Private key is saved in privateKey.txt \n We will now send you back to the main menu \n\n")
-
+        print("Public and private keys saved in files")
+        print("Your address is:")
+        print(client.getAddress())
 
 # Client loges in and can either see his transactions or do a transaction
 def login():
@@ -71,7 +75,7 @@ def login():
     awnser = input("Type 1 or 2: ")
     if(awnser=="1"):
         print("Your transactions are:")
-        print(searchChainFindUserId(public))
+        print(searchChainFindUserId(client.getAddress()))
     elif(awnser=="2"):
         print("To whom do you want to do an transaction. TODO ")
     elif(awnser=="3"):
@@ -99,10 +103,10 @@ def login():
 
 def readKeysFromFile():
     text_file = open("publicKey.txt", "r")
-    publicKey = text_file.read()
+    publicKey = make_tuple(text_file.read())
     text_file.close()
     text_file = open("privateKey.txt", "r")
-    privateKey = text_file.read()
+    privateKey = int(text_file.read())
     text_file.close()
     return (publicKey, privateKey)
 

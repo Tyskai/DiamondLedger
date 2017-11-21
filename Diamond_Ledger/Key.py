@@ -42,6 +42,7 @@ class Key:
     def setKeyPair(self, publicKey, privateKey):
         self.finalPublicKey = publicKey
         self.privKey = privateKey
+        self.address = createHash(str(self.finalPublicKey))
 
         # Elliptic curve signature
     def sign(self, messageHash):
