@@ -28,9 +28,14 @@ class Diamond:
 
 # Print Diamond Features
     def printDiamond(self):
-        print("ID: {0}\nColor: {1}\nClarity: {2}\nCut: {3}\nCarat: {4}\nOrigin: {5}\nNatural: {6}".format(str(self.uID),
+        print("ID: {0}\n    Color: {1} Clarity: {2} Cut: {3} Carat: {4} Origin: {5} Natural: {6}".format(str(self.uID),
                                             str(self.color), str(self.clarity), str(self.cut), str(self.carat),
                                             str(self.origin), str(self.isNatural)))
+    def diamondString(self):
+        return "ID: {0}\nColor: {1} Clarity: {2} Cut: {3} Carat: {4} Origin: {5} Natural: {6}".format(str(self.uID),
+                                            str(self.color), str(self.clarity), str(self.cut), str(self.carat),
+                                            str(self.origin), str(self.isNatural))
+
 
 
     def getDiamond(self):
@@ -40,12 +45,8 @@ class Diamond:
     def getDID(self):
         return self.uID
 
-#d = Diamond(3,3,4,5,"Indonesia",True)
-#d2 = Diamond(3,3,4,5,"Indonesia",True)
-#d3 = Diamond(3,3,4,5,"Indonesia",True)
-
-#print(d.printDiamond())
-#print(d2.printDiamond())
-#print(d3.printDiamond())
-
+    def validateDiamond(self):
+        message = "{0}{1}{2}{3}".format(str(self.color), str(self.clarity), str(self.cut), str(self.carat))
+        checkID = createHash(message)
+        return (self.uID == checkID)
 

@@ -14,7 +14,6 @@ class TransactionPool:
 
     def addTransaction(self,transaction):
         # first validate transaction then add
-        #TransactionPool.validateTransaction(self,transaction)
         self.pool.append(transaction)
 
     def validateTransaction(self,transaction,state,publicKey=""):
@@ -26,6 +25,8 @@ class TransactionPool:
         if not (element for element in state.getState() if element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
             print("Transaction is not valid")
             return False
+        if not( transaction["Diamond"].validateDiamond() ):
+            print("Diamond ID is not valid. Suspicion: tamperd with the diamond values")
         return True
 
     # Valide all the transactions

@@ -34,9 +34,10 @@ class Block:
 
 # Print block info
     def printBlock(self):
-        print("Parent Hash: {0}\nBlock Order: {1}\nBlock Hash: {2}\nTransactions".format(self.parentHash,str(self.blockOrder),self.blockHash))
+        print("BLOCK nr: {0}\nParent Hash: {1}\nBlock Hash: {2}\n Transactions".format(str(self.blockOrder),self.parentHash,self.blockHash))
         for i in range(len(self.transactions)):
-            print("{0}.{1}".format(i,self.transactions[i]))
+            t = self.transactions[i]
+            print("TRANSACTION NUMBER {0} \n Header:{1} \n Diamond{2} \n Current owner: {3} \n Next Owner: {4} \n Valid: {5} \n Signature: {6}".format(i,t["Header"],t["Diamond"].diamondString(),t["Current Owner"], t["Next Owner"], t["Valid"], t["Signature"]))
         print("\n")
 
     def getTransactions(self):
@@ -53,10 +54,10 @@ class Block:
         return False
 
     #Check if a given diamond exists in a block
-    def findDiamond(self, diamond):
+    def findDiamond(self, diamondId):
         trans = list()
         for t in self.transactions:
-            if diamond.getDID() == t["Diamond"].getDID():
+            if diamondId == t["Diamond"].getDID():
                 trans.append(t)
         return trans
 

@@ -17,6 +17,14 @@ def searchChainFindDiamond(diamond):
             return True
     return False
 
+def searchChainFindDiamondHistory(diamondId):
+    global chain
+    trans = list()
+    for i in range(len(chain)):
+        trans.append(chain[i].findDiamond(diamondId))
+    merge = list(itertools.chain.from_iterable(trans))
+    return merge
+
 # go though the chain, find a user Id and all his done/received transactions
 def searchChainFindUserId(userId):
     global chain
@@ -25,6 +33,10 @@ def searchChainFindUserId(userId):
         trans.append(chain[i].findUser(userId))
     merge = list(itertools.chain.from_iterable(trans))
     return merge
+
+def printList(list):
+    for i in list:
+        print(i)
 
 # Allows the user to register and add a diamond to the system
 def newUser():
@@ -71,11 +83,11 @@ def login():
 
     print("Client is recognized, client public key is:")
     print("{} {}".format(public[0],public[1]))
-    print("What do you want to do \n 1. See your transactions \n 2. Do transaction \n 3. To add another Diamond \n q. quit")
+    print("What do you want to do \n 1. See your transactions \n 2. Do transaction \n 3. To add another Diamond \n 4. Trace a diamond \n q. quit")
     awnser = input("Type 1 or 2: ")
     if(awnser=="1"):
         print("Your transactions are:")
-        print(searchChainFindUserId(client.getAddress()))
+        printList(searchChainFindUserId(client.getAddress()))
     elif(awnser=="2"):
         print("To whom do you want to do an transaction. TODO ")
     elif(awnser=="3"):
@@ -95,6 +107,10 @@ def login():
             diamond.printDiamond()
             transaction = client.createTransaction(diamond, client.getAddress())
             transactionPool.addTransaction(transaction)
+    elif(awnser=="4"):
+        print("Search for the diamond in the chain.")
+        id = input("Specify diamond id:")
+        printList(searchChainFindDiamondHistory(id))
     elif(awnser=="q"):
         print("Goodday!")
     else:
@@ -171,13 +187,18 @@ location = ["netherlands","germany","france","spain","poland","finland","swiss"]
 diamonds = list()
 for j in range(25):
     r = random.randint(1,7)
-    diamonds.append(Diamond(r,r,r,r,location[r-1],True))
+    diamonds.append(Diamond(j,j,j,j,location[r-1],True))
 
 # Generate a state, which knows for every diamond which client is the owner.
 state = State()
 ownership = list()
 for i in range(len(clientList)):
     ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getAddress()})
+    # add the valid (ownership) transaction to the pool
+    transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
+    transactionPool.addTransaction(transaction)
+
+# Add all this generated ownerships to the state
 state.initializeState(ownership)
 
 # Generate 20 valid transactions
