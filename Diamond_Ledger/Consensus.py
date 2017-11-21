@@ -43,7 +43,7 @@ class Consensus:
         transactions = candidateBlock.getTransactions()
         for i in range(len(transactions)):
             if not TransactionPool.validateTransaction(self, transactions[i],state):
-                print("Transaction is not valid")
+                print("Transaction is invalidated by verifiers!")
                 return False
         blockContents = "{0}{1}{2}".format(str(candidateBlock.parentHash),str(candidateBlock.blockOrder),str(candidateBlock.transactions))
         if candidateBlock.blockHash != createHash(blockContents):

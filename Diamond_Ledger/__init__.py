@@ -5,4 +5,5 @@ from Diamond_Ledger.Consensus import Consensus
 from Diamond_Ledger.Key import Key
 from Diamond_Ledger.Transaction import Transaction
 from Diamond_Ledger.Client import Client
+from Diamond_Ledger.State import State
 

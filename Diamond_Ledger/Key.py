@@ -45,16 +45,17 @@ class Key:
 
         # Elliptic curve signature
     def sign(self, messageHash):
-        lenN = N.bit_length()
-        z = int(messageHash[0:lenN], 16)
+        RandNum = random.randrange(1,N-1)
+        z = int(messageHash, base=16)
         xSignPoint, ySignPoint = EcPointMultiplication(GenX, GenY, RandNum)
         r = xSignPoint % N  # check r if r=0
         inv = modularinverse(RandNum, N)
-        s = (modularinverse(inv) * (z + r * self.privKey)) % N  # check s if s=0
+        s = (inv * (z + r * self.privKey)) % N  # check s if s=0
         return r, s
 
         # Verify signature
-    def verify(self, messageHash, signature):  # check if you really need public key
+    @staticmethod
+    def verify(messageHash, signature,publicKey):  # how to pass public key
         """
         if N*publicKey == 0:
             print("Public Key is Not Valid")
@@ -63,13 +64,13 @@ class Key:
         if not (signature[0] in range(1, N - 1) and signature[1] in range(1, N - 1)):
             print("Not a valid signature!!")
             return False
-        z = messageHash[0:N.bit_length()]
+        z = int(messageHash,base=16)
         w = modularinverse(signature[1], N)
         u_1 = (z * w) % N
         u_2 = (signature[0] * w) % N
 
         xu_1, yu_1 = EcPointMultiplication(GenX, GenY, u_1)
-        xu_2, yu_2 = EcPointMultiplication(GenX, GenY, u_2)
+        xu_2, yu_2 = EcPointMultiplication(publicKey[0],publicKey[1], u_2)
 
         x, y = PointAddition(xu_1, yu_1, xu_2, yu_2)
 
@@ -136,11 +137,13 @@ def EcPointMultiplication(xs,ys,Scalar):
             Qx,Qy=PointAddition(Qx,Qy,xs,ys);
     return (Qx,Qy)
 
+
+
 """
 print("******* Public Key Generation *********")
-xPublicKey, yPublicKey = EcPointMultiplication(GenX,GenY,self.privKey)
+xPublicKey, yPublicKey = EcPointMultiplication(GenX,GenY,int(k.getPrivateKey()))
 print("the private key (in base 10 format):")
-print("privekey: ",self.privKey,"\n")
+print("privekey: ",(k.getPrivateKey()),"\n")
 print("the uncompressed public key (starts with '04' & is not the public address):") 
 print("04",xPublicKey,yPublicKey,"\n")
 finalPublicKey = xPublicKey,yPublicKey
@@ -150,7 +153,7 @@ print("******* Signature Generation *********")
 xRandSignPoint, yRandSignPoint = EcPointMultiplication(GenX,GenY,RandNum)
 r = xRandSignPoint % N
 print("r =", r)
-s = ((HashOfThingToSign + r*privKey)*(modularinverse(RandNum,N))) % N
+s = ((HashOfThingToSign + r*int(k.getPrivateKey()))*(modularinverse(RandNum,N))) % N
 print("s =", s)
 
 print("******* Signature Verification *********>>")
@@ -159,7 +162,8 @@ xu1, yu1 = EcPointMultiplication(GenX,GenY,(HashOfThingToSign * w)%N)
 xu2, yu2 = EcPointMultiplication(xPublicKey,yPublicKey,(r*w)%N)
 x,y = PointAddition(xu1,yu1,xu2,yu2)
 print(r==x)
-"""
+
 
 k = Key()
 #print(k.getPublicKey(),"\n", k.getPrivateKey())
+"""

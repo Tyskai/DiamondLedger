@@ -1,5 +1,5 @@
 import sys
-from Diamond_Ledger import Diamond, Client, Main
+from Diamond_Ledger import Diamond, Client
 
 def str2bool(v):
   return v.lower() in ("true", "t", "1")

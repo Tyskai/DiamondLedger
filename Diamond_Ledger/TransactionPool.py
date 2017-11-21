@@ -1,7 +1,9 @@
 # TransactionPool class
 # Collect all transactions and validate them
 # After validation Transaction pool updates transaction state -- sends invocation to client
-from Diamond_Ledger import Transaction
+from Diamond_Ledger.Key import Key
+import hashlib
+
 def search_dictionaries(key, value, list_of_dictionaries):
     return [element for element in list_of_dictionaries if element[key] == value]
 
@@ -15,11 +17,16 @@ class TransactionPool:
         #TransactionPool.validateTransaction(self,transaction)
         self.pool.append(transaction)
 
-    def validateTransaction(self,transaction,state):
-            if not (element for element in state.getState() if element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
-                print("Transaction is not valid")
+    def validateTransaction(self,transaction,state,publicKey=""):
+        if publicKey != "":
+            headerHash = hashlib.sha256(transaction["Header"].encode('utf-8')).hexdigest()
+            if not Key.verify(headerHash,transaction["Signature"],publicKey):
+                print("Signature is not valid!")
                 return False
-            return True
+        if not (element for element in state.getState() if element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
+            print("Transaction is not valid")
+            return False
+        return True
 
     # Valide all the transactions
     def validateTransactionS(self, state):

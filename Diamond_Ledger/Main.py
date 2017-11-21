@@ -1,4 +1,4 @@
-from Diamond_Ledger import Client,State, Consensus, Demo
+from Diamond_Ledger import Client,State, Consensus
 from Diamond_Ledger import TransactionPool,Diamond,Block
 import random
 
@@ -49,6 +49,7 @@ def newUser():
         transactionPool.addTransaction(transaction)
         # Save the keys locally
         writeKeysToFile(client.getPublicKey(), client.getPrivateKey())
+        clientKey.append((client.getAddress(),client.getPublicKey()))
         print("Clients public key:")
         print(client.getPublicKey())
         print("(Is also saved in publicKey.txt. \n Private key is saved in privateKey.txt \n We will now send you back to the main menu \n\n")
@@ -156,6 +157,11 @@ clientList = list()
 for i in range(21):
     clientList.append(Client())
 
+# Client Address Key Pairs
+clientKey = list()
+for i in range(len(clientList)):
+    clientKey.append((clientList[i].getAddress(),clientList[i].getPublicKey()))
+
 # initially 25 diamonds
 location = ["netherlands","germany","france","spain","poland","finland","swiss"]
 diamonds = list()
@@ -175,7 +181,8 @@ for k in range(20):
     transaction = clientList[k].createTransaction(diamonds[k],clientList[k+1].getAddress())
     # validate transactions
     transactionPool.addTransaction(transaction)
-    transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state)
+    clientPublicKey = [item for item in clientKey if item[0] == clientList[k].getAddress()]
+    transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state,clientPublicKey[0][1])
 
 # then generate blocks - Mining
 # consensus process : choose one of the clients as leader. Leader creates candidate block. If majority of the remaining
