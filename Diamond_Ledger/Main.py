@@ -90,6 +90,26 @@ def login():
         printList(searchChainFindUserId(client.getAddress()))
     elif(awnser=="2"):
         print("To whom do you want to do an transaction. TODO ")
+        diamondsYouHave= list()
+        s = state.getState()
+        indices = [i for i in state.getState() if i["Owner"] == client.getAddress()]
+        for j in indices:
+            diamondsYouHave.append(j["Diamond"])
+        for i in range(len(diamondsYouHave)):
+            print(diamondsYouHave[i].printDiamond())
+        while True:
+            receiver = input("Enter receiver's address")
+            if receiver == client.getAddress():
+                print("You cannot transfer diamond to yourself")
+            elif [k for k in clientList if receiver != k.getAddress() ]:
+                print("Receiver's address is not valid")
+            else:
+                break
+        diamondID = input("Enter diamond id you want to transfer...")
+        diamondToSend = next(obj for obj in diamondsYouHave if obj.getDID() == diamondID)
+        newTransaction = client.createTransaction(diamondToSend,receiver)
+        transactionPool.addTransaction(newTransaction)
+
     elif(awnser=="3"):
         print("You want to add another diamond. Specifiy your diamond please")
         dColor = int(input("Diamond color (int): "))

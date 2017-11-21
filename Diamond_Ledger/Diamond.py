@@ -28,7 +28,8 @@ class Diamond:
 
 # Print Diamond Features
     def printDiamond(self):
-        print("ID: {0}\n    Color: {1} Clarity: {2} Cut: {3} Carat: {4} Origin: {5} Natural: {6}".format(str(self.uID),
+        print("ID: {0}\n    Color: {1}\n    Clarity: {2}\n    Cut: {3}\n    Carat: {4}\n    Origin: {5}\n    "
+                                            "Natural: {6}\n".format(str(self.uID),
                                             str(self.color), str(self.clarity), str(self.cut), str(self.carat),
                                             str(self.origin), str(self.isNatural)))
     def diamondString(self):

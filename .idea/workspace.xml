@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c3f162-3078-45cb-abe1-e3fb69af02de" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/DiamondLedger.iml" afterPath="$PROJECT_DIR$/.idea/DiamondLedger.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Diamond_Ledger/Key.py" afterPath="$PROJECT_DIR$/Diamond_Ledger/Key.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Diamond_Ledger/Diamond.py" afterPath="$PROJECT_DIR$/Diamond_Ledger/Diamond.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Diamond_Ledger/Main.py" afterPath="$PROJECT_DIR$/Diamond_Ledger/Main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Diamond_Ledger/privateKey.txt" afterPath="$PROJECT_DIR$/Diamond_Ledger/privateKey.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Diamond_Ledger/publicKey.txt" afterPath="$PROJECT_DIR$/Diamond_Ledger/publicKey.txt" />
@@ -17,39 +19,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2569">
+              <caret line="223" column="32" lean-forward="true" selection-start-line="223" selection-start-column="32" selection-end-line="223" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Diamond.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Diamond.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding>
-                <marker date="1511270863526" expanded="true" signature="271:1210" ph="..." />
-                <marker date="1511270863526" expanded="true" signature="271:1495" ph="..." />
-                <marker date="1511270863526" expanded="true" signature="1471:1495" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Key.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Key.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="118">
+              <caret line="31" column="82" lean-forward="true" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Transaction.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Transaction.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-              <folding>
-                <marker date="1511270863578" expanded="true" signature="876:1012" ph="..." />
-                <marker date="1511270863578" expanded="true" signature="876:1512" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -57,57 +44,9 @@
       <file leaf-file-name="State.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Diamond_Ledger/State.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+            <state relative-caret-position="153">
+              <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Demo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Demo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <marker date="1511270863518" expanded="true" signature="71:112" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="195:329" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="244:312" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="442:554" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="632:1829" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="1144:1257" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="1267:1829" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="1918:2721" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="1940:2028" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="2410:2495" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="2642:2721" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="2746:2979" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="3018:3206" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="3282:3739" ph="..." />
-                <marker date="1511270863518" expanded="true" signature="3668:3739" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Block.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Block.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Consensus.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Consensus.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-              <folding>
-                <element signature="e#471#493#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -115,8 +54,8 @@
       <file leaf-file-name="Client.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="26" />
+            <state relative-caret-position="224">
+              <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
               <folding>
                 <element signature="e#144#158#0" expanded="true" />
               </folding>
@@ -127,23 +66,43 @@
       <file leaf-file-name="TransactionPool.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Diamond_Ledger/TransactionPool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+            <state relative-caret-position="136">
+              <caret line="18" column="65" lean-forward="true" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Block.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Block.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="946">
+              <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
               <folding>
-                <element signature="e#161#195#0" expanded="true" />
+                <marker date="1511282169209" expanded="true" signature="995:1011" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Main.py">
+      <file leaf-file-name="Consensus.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Consensus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+            <state relative-caret-position="306">
+              <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
               <folding>
-                <element signature="e#0#16#0" expanded="true" />
+                <element signature="e#471#493#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Key.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Key.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -172,15 +131,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Diamond_Ledger/__init__.py" />
-        <option value="$PROJECT_DIR$/Diamond_Ledger/Diamond.py" />
         <option value="$PROJECT_DIR$/Diamond_Ledger/Transaction.py" />
         <option value="$PROJECT_DIR$/Diamond_Ledger/Client.py" />
-        <option value="$PROJECT_DIR$/Diamond_Ledger/State.py" />
         <option value="$PROJECT_DIR$/Diamond_Ledger/Consensus.py" />
         <option value="$PROJECT_DIR$/Diamond_Ledger/Demo.py" />
         <option value="$PROJECT_DIR$/Diamond_Ledger/TransactionPool.py" />
-        <option value="$PROJECT_DIR$/Diamond_Ledger/Key.py" />
         <option value="$PROJECT_DIR$/Diamond_Ledger/Block.py" />
+        <option value="$PROJECT_DIR$/Diamond_Ledger/Key.py" />
+        <option value="$PROJECT_DIR$/Diamond_Ledger/Diamond.py" />
+        <option value="$PROJECT_DIR$/Diamond_Ledger/State.py" />
         <option value="$PROJECT_DIR$/Diamond_Ledger/Main.py" />
       </list>
     </option>
@@ -191,7 +150,7 @@
     <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -204,7 +163,26 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DiamondLedger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DiamondLedger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DiamondLedger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DiamondLedger" type="462c0819:PsiDirectoryNode" />
+              <item name="Diamond_Ledger" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -257,7 +235,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="Key" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Diamond" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -269,7 +247,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DiamondLedger" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Diamond_Ledger/Key.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Diamond_Ledger/Diamond.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -309,19 +287,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.Key" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Block" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Consensus" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Transaction" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Main" />
+      <item index="0" class="java.lang.String" itemvalue="Python.Block" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Consensus" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Transaction" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Main" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Diamond" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Transaction" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Consensus" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Block" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Key" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Diamond" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Transaction" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Consensus" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Block" />
       </list>
     </recent_temporary>
   </component>
@@ -342,18 +320,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19583334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32456142" sideWeight="0.30885416" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.8114035" sideWeight="0.69114584" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1954612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31914893" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39770868" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -407,7 +385,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -416,23 +394,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1511270863518" expanded="true" signature="71:112" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="195:329" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="244:312" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="442:554" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="632:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1144:1257" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1267:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1918:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1940:2028" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2410:2495" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2642:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2746:2979" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3018:3206" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3282:3739" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3668:3739" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -451,7 +413,7 @@
         <state relative-caret-position="672">
           <caret line="32" column="26" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="26" />
           <folding>
-            <element signature="e#161#195#0" expanded="true" />
+            <element signature="e#161#195#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -460,11 +422,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="20" />
-          <folding>
-            <marker date="1511270863526" expanded="true" signature="271:1210" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="271:1495" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="1471:1495" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -490,10 +448,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="28" />
-          <folding>
-            <marker date="1511270863578" expanded="true" signature="876:1012" ph="..." />
-            <marker date="1511270863578" expanded="true" signature="876:1512" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -501,9 +456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#58#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -511,7 +463,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
-          <folding />
+          <folding>
+            <marker date="1511282169209" expanded="true" signature="995:1011" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -540,7 +494,7 @@
         <state relative-caret-position="462">
           <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
           <folding>
-            <element signature="e#161#195#0" expanded="true" />
+            <element signature="e#161#195#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -549,23 +503,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1638">
           <caret line="79" column="33" lean-forward="false" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
-          <folding>
-            <marker date="1511270863518" expanded="true" signature="71:112" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="195:329" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="244:312" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="442:554" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="632:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1144:1257" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1267:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1918:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1940:2028" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2410:2495" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2642:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2746:2979" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3018:3206" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3282:3739" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3668:3739" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -573,11 +511,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="20" />
-          <folding>
-            <marker date="1511270863526" expanded="true" signature="271:1210" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="271:1495" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="1471:1495" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -593,10 +527,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="14" column="74" lean-forward="false" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="74" />
-          <folding>
-            <marker date="1511270863578" expanded="true" signature="876:1012" ph="..." />
-            <marker date="1511270863578" expanded="true" signature="876:1512" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -604,23 +535,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1029">
           <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-          <folding>
-            <marker date="1511270863518" expanded="true" signature="71:112" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="195:329" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="244:312" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="442:554" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="632:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1144:1257" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1267:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1918:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1940:2028" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2410:2495" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2642:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2746:2979" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3018:3206" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3282:3739" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3668:3739" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -628,7 +543,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
-          <folding />
+          <folding>
+            <marker date="1511282169209" expanded="true" signature="995:1011" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -657,7 +574,7 @@
         <state relative-caret-position="399">
           <caret line="19" column="59" lean-forward="false" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
           <folding>
-            <element signature="e#161#195#0" expanded="true" />
+            <element signature="e#161#195#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -684,11 +601,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <marker date="1511270863526" expanded="true" signature="271:1210" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="271:1495" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="1471:1495" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -704,10 +617,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="14" column="111" lean-forward="false" selection-start-line="14" selection-start-column="111" selection-end-line="14" selection-end-column="111" />
-          <folding>
-            <marker date="1511270863578" expanded="true" signature="876:1012" ph="..." />
-            <marker date="1511270863578" expanded="true" signature="876:1512" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -735,7 +645,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
+          <folding>
+            <marker date="1511282169209" expanded="true" signature="995:1011" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -744,7 +656,7 @@
         <state relative-caret-position="357">
           <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
           <folding>
-            <element signature="e#161#195#0" expanded="true" />
+            <element signature="e#161#195#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -763,11 +675,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <marker date="1511270863526" expanded="true" signature="271:1210" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="271:1495" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="1471:1495" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -783,10 +691,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding>
-            <marker date="1511270863578" expanded="true" signature="876:1012" ph="..." />
-            <marker date="1511270863578" expanded="true" signature="876:1512" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -824,7 +729,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
+          <folding>
+            <marker date="1511282169209" expanded="true" signature="995:1011" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -833,7 +740,7 @@
         <state relative-caret-position="187">
           <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
-            <element signature="e#161#195#0" expanded="true" />
+            <element signature="e#161#195#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -843,40 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#58#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Diamond.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <marker date="1511270863526" expanded="true" signature="271:1210" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="271:1495" ph="..." />
-            <marker date="1511270863526" expanded="true" signature="1471:1495" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Transaction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-          <folding>
-            <marker date="1511270863578" expanded="true" signature="876:1012" ph="..." />
-            <marker date="1511270863578" expanded="true" signature="876:1512" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/State.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,76 +757,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1511270863518" expanded="true" signature="71:112" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="195:329" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="244:312" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="442:554" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="632:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1144:1257" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1267:1829" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1918:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="1940:2028" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2410:2495" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2642:2721" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="2746:2979" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3018:3206" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3282:3739" ph="..." />
-            <marker date="1511270863518" expanded="true" signature="3668:3739" ph="..." />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Transaction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Consensus.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        <state relative-caret-position="306">
+          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
           <folding>
             <element signature="e#471#493#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <element signature="e#144#158#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Key.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Diamond_Ledger/TransactionPool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-          <folding>
-            <element signature="e#161#195#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="18" column="65" lean-forward="true" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Block.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+        <state relative-caret-position="946">
+          <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+          <folding>
+            <marker date="1511282169209" expanded="true" signature="995:1011" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Diamond.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="31" column="82" lean-forward="true" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
+          <folding>
+            <element signature="e#144#158#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Diamond_Ledger/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+        <state relative-caret-position="2569">
+          <caret line="223" column="32" lean-forward="true" selection-start-line="223" selection-start-column="32" selection-end-line="223" selection-end-column="32" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
