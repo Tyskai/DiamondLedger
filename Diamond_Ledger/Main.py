@@ -101,8 +101,10 @@ def login():
             receiver = input("Enter receiver's address")
             if receiver == client.getAddress():
                 print("You cannot transfer diamond to yourself")
-            elif [k for k in clientList if receiver != k.getAddress() ]:
-                print("Receiver's address is not valid")
+            #if[ k for k in range(len(clientList)) if receiver != clientList[k].getAddress() and k == len(clientList)]:
+            indice = [k for k in clientList if k.getAddress() == receiver]
+            if not indice:
+                    print("Receiver's address is not valid")
             else:
                 break
         diamondID = input("Enter diamond id you want to transfer...")
@@ -215,8 +217,8 @@ ownership = list()
 for i in range(len(clientList)):
     ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getAddress()})
     # add the valid (ownership) transaction to the pool
-    #transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
-    #transactionPool.addTransaction(transaction)
+    transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
+    transactionPool.addTransaction(transaction)
 
 # Add all this generated ownerships to the state
 state.initializeState(ownership)
