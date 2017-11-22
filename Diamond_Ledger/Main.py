@@ -215,8 +215,8 @@ ownership = list()
 for i in range(len(clientList)):
     ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getAddress()})
     # add the valid (ownership) transaction to the pool
-    transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
-    transactionPool.addTransaction(transaction)
+    #transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
+    #transactionPool.addTransaction(transaction)
 
 # Add all this generated ownerships to the state
 state.initializeState(ownership)
@@ -237,7 +237,7 @@ def mineBlocks():
 
     cons = Consensus()
     votes = list()
-    transactionPool.validateTransactionS(state)
+    transactionPool.validateTransactionS(state,clientKey)
 
     while len(transactionPool) >= 5:
         leader = cons.findLeader(clientList)
@@ -247,7 +247,7 @@ def mineBlocks():
 
         # voting the candidate block
         for i in range(len(validators)):
-            votes.append(validators[i].validateCandidateBlock(candidateBlock,chain,state))
+            votes.append(validators[i].validateCandidateBlock(candidateBlock,chain,state,clientKey))
 
         if sum(votes) > (len(clientList)/2)+1:
             # Block is voted valid (by at least half + 1 of the clients)

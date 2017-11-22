@@ -16,24 +16,24 @@ class TransactionPool:
         # first validate transaction then add
         self.pool.append(transaction)
 
-    def validateTransaction(self,transaction,state,publicKey=""):
-        if publicKey != "":
-            headerHash = hashlib.sha256(transaction["Header"].encode('utf-8')).hexdigest()
-            if not Key.verify(headerHash,transaction["Signature"],publicKey):
-                print("Signature is not valid!")
-                return False
+    def validateTransaction(self,transaction,state,publicKey):
+        headerHash = hashlib.sha256(transaction["Header"].encode('utf-8')).hexdigest()
+        if not Key.verify(headerHash,transaction["Signature"],publicKey):
+            print("Signature is not valid!")
+            return False
         if not (element for element in state.getState() if element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
             print("Transaction is not valid")
             return False
         if not( transaction["Diamond"].validateDiamond() ):
-            print("Diamond ID is not valid. Suspicion: tamperd with the diamond values")
+            print("Diamond ID is not valid. Suspicion: tampered with the diamond values")
         return True
 
     # Valide all the transactions
-    def validateTransactionS(self, state):
+    def validateTransactionS(self, state,publicKey):
         for t in self.pool:
             if t["Valid"] == False:
-                t["Valid"] = self.validateTransaction(t,state)
+                clientPublicKey = [i for i in publicKey if i[0] == t["Current Owner"]]
+                t["Valid"] = self.validateTransaction(t,state,clientPublicKey[0][1])
 
     def getTransactionPool(self):
         return self.pool

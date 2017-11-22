@@ -17,8 +17,8 @@ class Client:
     def createCandidateBlock(self,parentHash,transactionPool):
         return self.cons.createCandidateBlock(parentHash,transactionPool)
 
-    def validateCandidateBlock(self, candidateBlock, chain,state):
-        return self.cons.validateCandidateBlock(candidateBlock,chain,state)
+    def validateCandidateBlock(self, candidateBlock, chain,state,publicKey):
+        return self.cons.validateCandidateBlock(candidateBlock,chain,state,publicKey)
 
     def createTransaction(self,diamond, nextOwner):
         transaction = self.trans.createTransaction(diamond,self.keyPair.getAddress(),nextOwner)

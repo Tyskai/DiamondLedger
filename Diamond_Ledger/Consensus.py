@@ -39,10 +39,11 @@ class Consensus:
         return listofPeers[waitTime.index(min(waitTime))]
 
 
-    def validateCandidateBlock(self,candidateBlock,chain,state):
+    def validateCandidateBlock(self,candidateBlock,chain,state,publicKey):
         transactions = candidateBlock.getTransactions()
         for i in range(len(transactions)):
-            if not TransactionPool.validateTransaction(self, transactions[i],state):
+            clientPublicKey = [item for item in publicKey if item[0] == transactions[i]["Current Owner"]]
+            if not TransactionPool.validateTransaction(self, transactions[i],state,clientPublicKey[0][1]):
                 print("Transaction is invalidated by verifiers!")
                 return False
         blockContents = "{0}{1}{2}".format(str(candidateBlock.parentHash),str(candidateBlock.blockOrder),str(candidateBlock.transactions))
