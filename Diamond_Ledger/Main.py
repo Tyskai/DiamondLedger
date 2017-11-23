@@ -80,8 +80,6 @@ def newUser():
         # Save the keys locally
         writeKeysToFile(client.getPublicKey(), client.getPrivateKey())
         clientKey.append((client.getAddress(),client.getPublicKey()))
-        print("Clients public key:")
-        print(client.getPublicKey())
         print("Public and private keys saved in files")
         print("Your address is:")
         print(client.getAddress())
@@ -111,10 +109,8 @@ def hackADiamond(client):
         dOrigin = input("Diamond country of Origin: ")
         dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
         diamond = Diamond(dColor, dClarity, dCut, dCarat, dOrigin, dIsNatural)
-        changeID = input("Alter ID to one of your existing diamonds: ")
-        if str2bool(changeID):
-            dID = int(input("DiamondID: "))
-            diamond.setDID(dID)
+        changeID = input("DiamondID (use your realy diamond id): ")
+        diamond.setDID(changeID)
     except:
         print("Input was not recognized correctly. Color, Clarity, Cut and Carat should be intergeters, Origin should be a text string. Is Natural should be either 'true' or 'false'")
     print("The FAULTY diamond was created succesfully!")
@@ -234,7 +230,6 @@ def readKeysFromFile():
     return (publicKey, privateKey)
 
 def writeKeysToFile(public, private):
-    print(public)
     text_file = open("publicKey.txt", "w")
     text_file.write(''.join('{0},{1}'.format(public[0],public[1])))
     text_file.close()

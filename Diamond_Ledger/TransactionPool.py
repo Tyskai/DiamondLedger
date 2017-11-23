@@ -43,12 +43,11 @@ class TransactionPool:
         if not (transaction["Diamond"].validateDiamond()):
             print("Diamond ID is not valid. Suspicion: tampered with the diamond values")
             return False
-        indice = []
         return True
 
     # Valide all the transactions
     # Remove all invalid transacionts
-    def validateTransactionS(self, state,publicKey):
+    def validateTransactionS(self, state, publicKey):
         for t in self.pool:
             clientPublicKey = [i for i in publicKey if i[0] == t["Current Owner"]]
             t["Valid"] = self.validateTransaction(t,state,clientPublicKey[0][1])
