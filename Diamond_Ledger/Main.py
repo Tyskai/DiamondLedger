@@ -245,7 +245,7 @@ def writeKeysToFile(public, private):
 # start the demo, user can either, create an acoount, or login
 def demo():
     global chain, transactionPool, ClientList
-    print("DIAMONDS ARE FOREVER \n Secure diamond trading system \nWhat wouly like to do \n  1. Create an account and add a Diamond \n  2. Login to your account \n chain. See the current chain. \n pool. See the transaction pool \n mine. Mine the pool")
+    print("DIAMONDS ARE A GIRL'S BEST FRIEND \n A secure diamond trace system \nWhat wouly like to do \n  1. Create an account and add a Diamond \n  2. Login to your account \n chain. See the current chain. \n pool. See the transaction pool \n mine. Mine the pool \n addRandom. To make another user do a random transaction")
     awnser = input(": ")
     if awnser == "1":
         newUser()
@@ -259,11 +259,11 @@ def demo():
         transactionPool.printPool()
     elif awnser == "mine":
         mineBlocks()
+    elif awnser == "addRandom":
+        makeRandomTransaction()
     else:
         print("Command was not recognised. Try again.")
         demo()
-
-### Functions
 
 def printChain():
     global chain
@@ -271,63 +271,73 @@ def printChain():
     for i in range(len(chain)):
         chain[i].printBlock()
 
-### Begin file
+### Initialize the date to fill the chain
+def initilizeChain():
+    global chain, transactionPool, clientList, state, clientKey
+    # create genesis block
+    genesisBlock = Block()
+    chain.append(genesisBlock)
 
-# create genesis block
-genesisBlock = Block()
-chain = list()
-chain.append(genesisBlock)
+    # The number of times to do something
+    n = 7
 
-# create transaction pool. At first it is empty
-transactionPool = TransactionPool()
+    # create n+1 clients
+    for i in range(n+1):
+        clientList.append(Client())
 
-# The number of times to do something
-n = 7
+    # Add the client public address
+    for i in range(len(clientList)):
+        clientKey.append((clientList[i].getAddress(),clientList[i].getPublicKey()))
 
-# create n+1 clients
-clientList = list()
-for i in range(n+1):
-    clientList.append(Client())
+    # initially 25 diamonds
+    location = ["netherlands","germany","france","spain","poland","finland","swiss"]
+    diamonds = list()
+    for j in range(n):
+        r = random.randint(1,7)
+        diamonds.append(Diamond(j,j,j,j,location[r-1],True))
 
+    # Generate a state, which knows for every diamond which client is the owner.
 
-# Client Address Key Pairs
-clientKey = list()
-for i in range(len(clientList)):
-    clientKey.append((clientList[i].getAddress(),clientList[i].getPublicKey()))
+    ownership = list()
+    for i in range(len(clientList)-1):
+        ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getAddress()})
+        # add the valid (ownership) transaction to the pool
+        transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
+        transactionPool.addTransaction(transaction)
 
-# initially 25 diamonds
-location = ["netherlands","germany","france","spain","poland","finland","swiss"]
-diamonds = list()
-for j in range(n):
-    r = random.randint(1,7)
-    diamonds.append(Diamond(j,j,j,j,location[r-1],True))
+    # Add all this generated ownerships to the state
+    state.initializeState(ownership)
 
-# Generate a state, which knows for every diamond which client is the owner.
-state = State()
-ownership = list()
-for i in range(len(clientList)-1):
-    ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getAddress()})
-    # add the valid (ownership) transaction to the pool
-    transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
+    # Generate n valid transactions
+    for k in range(n):
+        transaction = clientList[k].createTransaction(diamonds[k],clientList[k+1].getAddress())
+        # validate transactions
+        transactionPool.addTransaction(transaction)
+        clientPublicKey = [item for item in clientKey if item[0] == clientList[k].getAddress()]
+        transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state,clientPublicKey[0][1])
+
+randomTransactionCounter = 1
+
+def makeRandomTransaction():
+    global randomTransactionCounter
+    global state
+    client = Client()
+    clientKey.append((client.getAddress(),client.getPublicKey()))
+    j = randomTransactionCounter
+    r = random.randint(1, 6)
+    location = ["netherlands", "germany", "france", "spain", "poland", "finland", "swiss"]
+    diamond = Diamond(j, j + 1, j + 4, j + 9, location[r - 1], True)
+    transaction = client.createTransaction(diamond, client.getAddress())
     transactionPool.addTransaction(transaction)
-
-
-# Add all this generated ownerships to the state
-state.initializeState(ownership)
-
-# Generate n valid transactions
-for k in range(n):
-    transaction = clientList[k].createTransaction(diamonds[k],clientList[k+1].getAddress())
-    # validate transactions
+    transaction = client.createTransaction(diamond, clientList[r].getAddress())
     transactionPool.addTransaction(transaction)
-    clientPublicKey = [item for item in clientKey if item[0] == clientList[k].getAddress()]
-    transactionPool.validateTransaction(transactionPool.getTransactionPool()[k],state,clientPublicKey[0][1])
+    randomTransactionCounter =+ 1
 
 # then generate blocks - Mining
 # consensus process : choose one of the clients as leader. Leader creates candidate block. If majority of the remaining
 # clients ( validators ) validate the candidate block, then it is added to the chain
 def mineBlocks():
-    global chain, transactionPool, clientList, state
+    global chain, transactionPool, clientList, state, clientKey
 
     cons = Consensus()
     votes = list()
@@ -357,13 +367,28 @@ def mineBlocks():
             #validTransactions = [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
             leader.setLeader(False)
 
-# Remove one transaction in the pool, so that the new user can add his diamond directly
-# transactionPool.removeTransactions(1)
 
+######### Start of the code
+
+#Create the chain
+chain = list()
+# create transaction pool. At first it is empty
+transactionPool = TransactionPool()
+# Keep track of the state
+state = State()
+# Create a list of clients
+clientList = list()
+# List of Client Address
+clientKey = list()
+
+# Generate an inital chain
+initilizeChain()
+
+#Mine the first blocks
 mineBlocks()
 
-# Start demo (do 3 times
-for i in range(0,30):
+# Start demo
+for i in range(0,50):
    print("\n\n DEMO \n\n")
    demo()
 

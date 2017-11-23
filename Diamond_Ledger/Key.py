@@ -137,34 +137,3 @@ def EcPointMultiplication(xs,ys,Scalar):
         if ScalarBin[i] == "1":
             Qx,Qy=PointAddition(Qx,Qy,xs,ys);
     return (Qx,Qy)
-
-
-
-"""
-print("******* Public Key Generation *********")
-xPublicKey, yPublicKey = EcPointMultiplication(GenX,GenY,int(k.getPrivateKey()))
-print("the private key (in base 10 format):")
-print("privekey: ",(k.getPrivateKey()),"\n")
-print("the uncompressed public key (starts with '04' & is not the public address):") 
-print("04",xPublicKey,yPublicKey,"\n")
-finalPublicKey = xPublicKey,yPublicKey
-print("finalpublickey: ",finalPublicKey)
-
-print("******* Signature Generation *********")
-xRandSignPoint, yRandSignPoint = EcPointMultiplication(GenX,GenY,RandNum)
-r = xRandSignPoint % N
-print("r =", r)
-s = ((HashOfThingToSign + r*int(k.getPrivateKey()))*(modularinverse(RandNum,N))) % N
-print("s =", s)
-
-print("******* Signature Verification *********>>")
-w = modularinverse(s,N)
-xu1, yu1 = EcPointMultiplication(GenX,GenY,(HashOfThingToSign * w)%N)
-xu2, yu2 = EcPointMultiplication(xPublicKey,yPublicKey,(r*w)%N)
-x,y = PointAddition(xu1,yu1,xu2,yu2)
-print(r==x)
-
-
-k = Key()
-#print(k.getPublicKey(),"\n", k.getPrivateKey())
-"""

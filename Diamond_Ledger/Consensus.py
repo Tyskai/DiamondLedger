@@ -11,7 +11,6 @@ from Diamond_Ledger import Block , TransactionPool
 def createHash(message=""):
     return hashlib.sha256(str(message).encode('utf-8')).hexdigest()
 
-
 class Consensus:
 
 # leader calls this function to create candidate block
@@ -60,10 +59,3 @@ class Consensus:
 def addBlock(self,chain,candidateBlock):
         chain.append(candidateBlock)
         # if enough valid votes append ledger
-
-#state = [{"Diamond":"gray","Owner":9876567890,"Valid":True},{"Diamond":"white","Owner":456789078,"Valid":True}]
-#b = Block()
-#print(b.printBlock())
-#c = Consensus()
-#c.createCandidateBlock(b.blockHash,state)
-

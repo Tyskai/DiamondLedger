@@ -37,8 +37,6 @@ class Diamond:
                                             str(self.color), str(self.clarity), str(self.cut), str(self.carat),
                                             str(self.origin), str(self.isNatural))
 
-
-
     def getDiamond(self):
         return "{0}{1}{2}{3}{4}{5}{6}".format(str(self.uID), str(self.color), str(self.clarity), str(self.cut),
                                           str(self.carat), str(self.origin), str(self.isNatural))

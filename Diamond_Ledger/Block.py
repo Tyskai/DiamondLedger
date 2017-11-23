@@ -3,10 +3,8 @@
 import hashlib
 
 blockNum=0
-
 def createHash(message=""):
     return hashlib.sha256(str(message).encode('utf-8')).hexdigest()
-
 
 class Block:
 
