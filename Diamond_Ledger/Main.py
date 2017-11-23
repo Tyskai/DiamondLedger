@@ -10,11 +10,15 @@ def str2bool(v):
   return v.lower() in ("true", "t", "1")
 
 # go through the chain, find a given diamond
-def searchChainFindDiamond(diamond):
-    global chain
+def searchChainFindDiamond(diamondId):
+    global chain, transactionPool
+    # Search the chain
     for i in range(len(chain)):
-        if chain[i].diamondExists(diamond):
+        if chain[i].diamondExists(diamondId):
             return True
+    # Search the transactionPool
+    if(transactionPool.diamondExists(diamondId)):
+        return True
     return False
 
 def searchChainFindDiamondHistory(diamondId):
@@ -51,8 +55,8 @@ def newUser():
     dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
 
     diamond = Diamond(dColor,dClarity,dCut,dCarat,dOrigin,dIsNatural)
-    if searchChainFindDiamond(diamond):
-        print("The diamond is already registered in the chain. Exit")
+    if searchChainFindDiamond(diamond.getDID()):
+        print("The diamond is already registered in the chain or transactionPool. Exit.")
     else:
         print("The diamond was created succesfully!")
         diamond.printDiamond()
@@ -107,7 +111,7 @@ def login():
                     print("Receiver's address is not valid")
             else:
                 break
-        diamondID = input("Enter diamond id you want to transfer...")
+        diamondID = input("Enter the id of the diamond you want to transfer: ")
         diamondToSend = next(obj for obj in diamondsYouHave if obj.getDID() == diamondID)
         newTransaction = client.createTransaction(diamondToSend,receiver)
         transactionPool.addTransaction(newTransaction)
@@ -122,7 +126,7 @@ def login():
         dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
 
         diamond = Diamond(dColor, dClarity, dCut, dCarat, dOrigin, dIsNatural)
-        if searchChainFindDiamond(diamond):
+        if searchChainFindDiamond(diamond.getDID()):
             print("The diamond is already registered in the chain. Exit")
         else:
             print("The diamond was created succesfully!")
@@ -193,10 +197,12 @@ chain.append(genesisBlock)
 
 # create transaction pool. At first it is empty
 transactionPool = TransactionPool()
+n = 5
 
-# create 20 clients
+
+# create n+1 clients
 clientList = list()
-for i in range(21):
+for i in range(n+1):
     clientList.append(Client())
 
 # Client Address Key Pairs
@@ -207,14 +213,14 @@ for i in range(len(clientList)):
 # initially 25 diamonds
 location = ["netherlands","germany","france","spain","poland","finland","swiss"]
 diamonds = list()
-for j in range(25):
+for j in range(n):
     r = random.randint(1,7)
     diamonds.append(Diamond(j,j,j,j,location[r-1],True))
 
 # Generate a state, which knows for every diamond which client is the owner.
 state = State()
 ownership = list()
-for i in range(len(clientList)):
+for i in range(len(clientList)-1):
     ownership.append({"Diamond":diamonds[i],"Owner":clientList[i].getAddress()})
     # add the valid (ownership) transaction to the pool
     transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
@@ -224,7 +230,7 @@ for i in range(len(clientList)):
 state.initializeState(ownership)
 
 # Generate 20 valid transactions
-for k in range(20):
+for k in range(n):
     transaction = clientList[k].createTransaction(diamonds[k],clientList[k+1].getAddress())
     # validate transactions
     transactionPool.addTransaction(transaction)
@@ -242,6 +248,7 @@ def mineBlocks():
     transactionPool.validateTransactionS(state,clientKey)
 
     while len(transactionPool) >= 5:
+        print("Mining block....")
         leader = cons.findLeader(clientList)
         validators = clientList.copy()
         validators.remove(leader)
@@ -260,7 +267,7 @@ def mineBlocks():
             leader.setLeader(False)
 
 # Remove one transaction in the pool, so that the new user can add his diamond directly
-transactionPool.removeTransactions(1)
+# transactionPool.removeTransactions(1)
 
 mineBlocks()
 

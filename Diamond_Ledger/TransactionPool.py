@@ -35,6 +35,12 @@ class TransactionPool:
                 clientPublicKey = [i for i in publicKey if i[0] == t["Current Owner"]]
                 t["Valid"] = self.validateTransaction(t,state,clientPublicKey[0][1])
 
+    def diamondExists(self, diamondId):
+        for t in self.pool:
+            if diamondId == t["Diamond"].getDID():
+                return True
+        return False
+
     def getTransactionPool(self):
         return self.pool
 

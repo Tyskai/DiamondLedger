@@ -47,9 +47,9 @@ class Block:
         return self.blockOrder
 
     #Check if a given diamond exists in a block
-    def diamondExists(self, diamond):
+    def diamondExists(self, diamondId):
         for t in self.transactions:
-            if diamond.getDID() == t["Diamond"].getDID():
+            if diamondId == t["Diamond"].getDID():
                 return True
         return False
 
