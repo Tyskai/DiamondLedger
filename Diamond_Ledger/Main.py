@@ -249,8 +249,8 @@ def mineBlocks():
     cons = Consensus()
     votes = list()
     transactionPool.validateTransactionS(state,clientKey)
-    validTransactions = [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
-    while len(validTransactions) >= 5:
+    transactionPool.removeInvalidTransactions() #= [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
+    while len(transactionPool) >= 5:
         print("Mining block....")
 
         leader = cons.findLeader(clientList)
@@ -268,7 +268,7 @@ def mineBlocks():
             chain.append(candidateBlock)
             state.updateState(transactionPool)
             transactionPool.removeTransactions()
-            validTransactions = [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
+            #validTransactions = [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
             leader.setLeader(False)
 
 # Remove one transaction in the pool, so that the new user can add his diamond directly

@@ -16,6 +16,12 @@ class TransactionPool:
         # first validate transaction then add
         self.pool.append(transaction)
 
+    #remove invalid transactions
+    def removeInvalidTransactions(self):
+        for t in self.pool:
+            if t["Valid"] == False:
+                self.pool.remove(t)
+
     def validateTransaction(self,transaction, state, publicKey):
         indice = [i for i in TransactionPool.getTransactionPool(self) if
                   i["Diamond"] == transaction["Diamond"] and i["Current Owner"] == transaction["Current Owner"] and
@@ -37,11 +43,13 @@ class TransactionPool:
         return True
 
     # Valide all the transactions
+    # Remove all invalid transacionts
     def validateTransactionS(self, state,publicKey):
         for t in self.pool:
             if t["Valid"] == False:
                 clientPublicKey = [i for i in publicKey if i[0] == t["Current Owner"]]
                 t["Valid"] = self.validateTransaction(t,state,clientPublicKey[0][1])
+        self.removeInvalidTransactions()
 
     def diamondExists(self, diamondId):
         for t in self.pool:
