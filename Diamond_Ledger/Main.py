@@ -60,6 +60,7 @@ def newUser():
         client = Client()
         transaction = client.createTransaction(diamond,client.getAddress())
         transactionPool.addTransaction(transaction)
+        clientList.append(client)
         print("Your transaction is:")
         print(transaction)
         # Save the keys locally
@@ -196,8 +197,9 @@ transactionPool = TransactionPool()
 
 # create 20 clients
 clientList = list()
-for i in range(21):
+for i in range(5):
     clientList.append(Client())
+
 
 # Client Address Key Pairs
 clientKey = list()
@@ -220,11 +222,12 @@ for i in range(len(clientList)):
     transaction = clientList[i].createTransaction(diamonds[i],clientList[i].getAddress())
     transactionPool.addTransaction(transaction)
 
+
 # Add all this generated ownerships to the state
 state.initializeState(ownership)
 
 # Generate 20 valid transactions
-for k in range(20):
+for k in range(4):
     transaction = clientList[k].createTransaction(diamonds[k],clientList[k+1].getAddress())
     # validate transactions
     transactionPool.addTransaction(transaction)
@@ -241,7 +244,8 @@ def mineBlocks():
     votes = list()
     transactionPool.validateTransactionS(state,clientKey)
 
-    while len(transactionPool) >= 5:
+    validTransactions = [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
+    while len(validTransactions) >= 5:
         leader = cons.findLeader(clientList)
         validators = clientList.copy()
         validators.remove(leader)
@@ -257,6 +261,7 @@ def mineBlocks():
             chain.append(candidateBlock)
             state.updateState(transactionPool)
             transactionPool.removeTransactions()
+            validTransactions = [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
             leader.setLeader(False)
 
 # Remove one transaction in the pool, so that the new user can add his diamond directly

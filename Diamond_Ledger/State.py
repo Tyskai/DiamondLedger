@@ -7,11 +7,12 @@ class State:
         self.state = list() # will be a list of all ownerships
 
     def updateState(self,transactions, num = 5):
+        t = [j for j in transactions.getTransactionPool() if j["Valid"] == True]
         for i in range(num):
-            t = transactions.getTransactionPool()[i]
-            currentOwner = t["Current Owner"]
-            diamond = t["Diamond"]
-            nextOwner = t["Next Owner"]
+
+            currentOwner = t[i]["Current Owner"]
+            diamond = t[i]["Diamond"]
+            nextOwner = t[i]["Next Owner"]
 
             currentOwnership = {"Diamond":diamond,"Owner":currentOwner}
             nextOwnership = {"Diamond":diamond,"Owner":nextOwner}
