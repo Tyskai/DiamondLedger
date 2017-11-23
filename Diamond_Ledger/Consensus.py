@@ -17,7 +17,7 @@ class Consensus:
 # leader calls this function to create candidate block
     def createCandidateBlock(self,parentHash,transactionPool):
         self.transactions = list()
-        for i in range(len(transactionPool.getTransactionPool())):
+        for i in range(5):
 
             if transactionPool.getTransactionPool()[i]["Valid"]:
                 self.transactions.append(transactionPool.getTransactionPool()[i]) # Transactions can be validated again

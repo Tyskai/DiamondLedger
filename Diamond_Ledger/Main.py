@@ -94,28 +94,42 @@ def login():
         print("Your transactions are:")
         printList(searchChainFindUserId(client.getAddress()))
     elif(awnser=="2"):
-        print("To whom do you want to do an transaction. TODO ")
+        print("To whom do you want to do an transaction. ")
         diamondsYouHave= list()
+        diamondsIDsYouhave = list()
         s = state.getState()
         indices = [i for i in state.getState() if i["Owner"] == client.getAddress()]
         for j in indices:
             diamondsYouHave.append(j["Diamond"])
-        for i in range(len(diamondsYouHave)):
-            print(diamondsYouHave[i].printDiamond())
+            diamondsIDsYouhave.append(k["Diamond"].getDID())
+        # Print the diamonds you own
+        if len(diamondsYouHave) == 0:
+            print("Currently you do not own any diamond.")
+        else:
+            for i in range(len(diamondsYouHave)):
+                print("The diamonds you own are: ")
+                print(diamondsYouHave[i].printDiamond())
         while True:
-            receiver = input("Enter receiver's address")
+            receiver = input("Enter receiver's address: ")
             if receiver == client.getAddress():
                 print("You cannot transfer diamond to yourself")
             #if[ k for k in range(len(clientList)) if receiver != clientList[k].getAddress() and k == len(clientList)]:
             indice = [k for k in clientList if k.getAddress() == receiver]
             if not indice:
                     print("Receiver's address is not valid")
+            if receiver == "quit":
+                break
             else:
                 break
         diamondID = input("Enter the id of the diamond you want to transfer: ")
-        diamondToSend = next(obj for obj in diamondsYouHave if obj.getDID() == diamondID)
-        newTransaction = client.createTransaction(diamondToSend,receiver)
-        transactionPool.addTransaction(newTransaction)
+        if (diamondID in diamondsIDsYouhave):
+            diamondToSend = next(obj for obj in diamondsYouHave if obj.getDID() == diamondID)
+            newTransaction = client.createTransaction(diamondToSend, receiver)
+            print("We created a new transaction. The following transaction will be added to the pool:")
+            print(newTransaction)
+            transactionPool.addTransaction(newTransaction)
+        else:
+            print("You do not own that diamond, and thus can not transfer it.")
 
     elif(awnser=="3"):
         print("You want to add another diamond. Specifiy your diamond please")
@@ -198,8 +212,9 @@ chain.append(genesisBlock)
 
 # create transaction pool. At first it is empty
 transactionPool = TransactionPool()
-n = 5
 
+# The number of times to do something
+n = 7
 
 # create n+1 clients
 clientList = list()
