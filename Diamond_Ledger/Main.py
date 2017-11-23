@@ -42,25 +42,35 @@ def printList(list):
     for i in list:
         print(i)
 
-# Allows the user to register and add a diamond to the system
-def newUser():
-    global chain, transactionPool
-    print("Welcome new user \n Please specify your diamond.")
-
-    dColor = int(input("Diamond color (int): "))
-    dClarity = int(input("Diamond clarity: "))
-    dCut = int(input("Diamond cut: "))
-    dCarat = int(input("Diamond Carat: "))
-    dOrigin = input("Diamond country of Origin: ")
-    dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
-
-    diamond = Diamond(dColor,dClarity,dCut,dCarat,dOrigin,dIsNatural)
+# Create a diamond
+def createDiamond():
+    print("Please specify your diamond")
+    try:
+        dColor = int(input("Diamond color (int): "))
+        dClarity = int(input("Diamond clarity: "))
+        dCut = int(input("Diamond cut: "))
+        dCarat = int(input("Diamond Carat: "))
+        dOrigin = input("Diamond country of Origin: ")
+        dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
+        diamond = Diamond(dColor, dClarity, dCut, dCarat, dOrigin, dIsNatural)
+    except:
+        print("Input was not recognized correctly. Color, Clarity, Cut and Carat should be intergeters, Origin should be a text string. Is Natural should be either 'true' or 'false'")
+        return (False, None)
     if searchChainFindDiamond(diamond.getDID()):
         print("The diamond is already registered in the chain or transactionPool. Exit.")
+        return (False, None)
     else:
         print("The diamond was created succesfully!")
         diamond.printDiamond()
+        return (True, diamond)
 
+# Allows the user to register and add a diamond to the system
+def newUser():
+    global chain, transactionPool
+    print("Welcome new user")
+
+    (goon, diamond) = createDiamond()
+    if(goon):
         client = Client()
         transaction = client.createTransaction(diamond,client.getAddress())
         transactionPool.addTransaction(transaction)
@@ -75,6 +85,64 @@ def newUser():
         print("Public and private keys saved in files")
         print("Your address is:")
         print(client.getAddress())
+
+def hackADiamond(client):
+    print("hackhack")
+    diamondsYouHave = list()
+    diamondsIDsYouhave = list()
+    s = state.getState()
+    indices = [i for i in state.getState() if i["Owner"] == client.getAddress()]
+    for j in indices:
+        diamondsYouHave.append(j["Diamond"])
+        diamondsIDsYouhave.append(j["Diamond"].getDID())
+    # Print the diamonds you own
+    if len(diamondsYouHave) == 0:
+        print("Currently you do not own any diamond.")
+    else:
+        for i in range(len(diamondsYouHave)):
+            print("The diamonds you own are: ")
+            print(diamondsYouHave[i].printDiamond())
+    print("Please specify your FAULTY diamond (you can improve it)")
+    try:
+        dColor = int(input("Diamond color (int): "))
+        dClarity = int(input("Diamond clarity: "))
+        dCut = int(input("Diamond cut: "))
+        dCarat = int(input("Diamond Carat: "))
+        dOrigin = input("Diamond country of Origin: ")
+        dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
+        diamond = Diamond(dColor, dClarity, dCut, dCarat, dOrigin, dIsNatural)
+        changeID = input("Alter ID to one of your existing diamonds: ")
+        if str2bool(changeID):
+            dID = int(input("DiamondID: "))
+            diamond.setDID(dID)
+    except:
+        print("Input was not recognized correctly. Color, Clarity, Cut and Carat should be intergeters, Origin should be a text string. Is Natural should be either 'true' or 'false'")
+    print("The FAULTY diamond was created succesfully!")
+    diamond.printDiamond()
+
+    # Do a invaldit transaction
+    print("Specify your INVALID transaction")
+    newOwner = input("Give diamond to (public adres): ")
+    transaction = client.createTransaction(diamond,newOwner)
+    transactionPool.addTransaction(transaction)
+    print("Transaction succesfully added")
+
+# Hack a transaction
+def hackATransaction(client):
+    global transactionPool
+    print("hackhack")
+
+    trans = transactionPool.getLastTransaction()
+    transactionPool.removeLastTransaction()
+    print("Tamper with transaction:")
+    printList(trans)
+
+    trans["Next Owner"] = client.getAddress()
+    transactionPool.addTransaction(trans)
+
+    print("Transaction added to the pool")
+    print(trans)
+
 
 # Client loges in and can either see his transactions or do a transaction
 def login():
@@ -101,7 +169,7 @@ def login():
         indices = [i for i in state.getState() if i["Owner"] == client.getAddress()]
         for j in indices:
             diamondsYouHave.append(j["Diamond"])
-            diamondsIDsYouhave.append(k["Diamond"].getDID())
+            diamondsIDsYouhave.append(j["Diamond"].getDID())
         # Print the diamonds you own
         if len(diamondsYouHave) == 0:
             print("Currently you do not own any diamond.")
@@ -132,28 +200,26 @@ def login():
             print("You do not own that diamond, and thus can not transfer it.")
 
     elif(awnser=="3"):
-        print("You want to add another diamond. Specifiy your diamond please")
-        dColor = int(input("Diamond color (int): "))
-        dClarity = int(input("Diamond clarity: "))
-        dCut = int(input("Diamond cut: "))
-        dCarat = int(input("Diamond Carat: "))
-        dOrigin = input("Diamond country of Origin: ")
-        dIsNatural = str2bool(input("Is the diamond natural (True/False) : "))
-
-        diamond = Diamond(dColor, dClarity, dCut, dCarat, dOrigin, dIsNatural)
-        if searchChainFindDiamond(diamond.getDID()):
-            print("The diamond is already registered in the chain. Exit")
-        else:
-            print("The diamond was created succesfully!")
-            diamond.printDiamond()
+        print("You want to add another diamond.")
+        (goon, diamond) = createDiamond()
+        if(goon):
             transaction = client.createTransaction(diamond, client.getAddress())
             transactionPool.addTransaction(transaction)
     elif(awnser=="4"):
-        print("Search for the diamond in the chain.")
+        print("Search for a diamond in the chain.")
         id = input("Specify diamond id:")
+        print("Found diamonds are: ")
         printList(searchChainFindDiamondHistory(id))
     elif(awnser=="q"):
         print("Goodday!")
+
+    elif(awnser=="hack"):
+        print("Create a faulty diamond and do a faulty transaction")
+        hackADiamond(client)
+
+    elif(awnser =="hack2"):
+        print("Hack a transaction in the transaction pool")
+        hackATransaction(client)
     else:
         print("command was not regocnized. Please try again.")
         login()
@@ -179,8 +245,8 @@ def writeKeysToFile(public, private):
 # start the demo, user can either, create an acoount, or login
 def demo():
     global chain, transactionPool, ClientList
-    print("Welcome to Secure Diamonds Trade \nWhat wouly like to do \n  1. Create an account and add a Diamond \n  2. Login to your account \n chain. See the current chain. \n pool. See the transaction pool")
-    awnser = input("Type 1 or 2: ")
+    print("DIAMONDS ARE FOREVER \n Secure diamond trading system \nWhat wouly like to do \n  1. Create an account and add a Diamond \n  2. Login to your account \n chain. See the current chain. \n pool. See the transaction pool \n mine. Mine the pool")
+    awnser = input(": ")
     if awnser == "1":
         newUser()
     elif awnser == "2":
@@ -191,6 +257,8 @@ def demo():
         printChain()
     elif awnser == "pool":
         transactionPool.printPool()
+    elif awnser == "mine":
+        mineBlocks()
     else:
         print("Command was not recognised. Try again.")
         demo()
@@ -263,8 +331,11 @@ def mineBlocks():
 
     cons = Consensus()
     votes = list()
+
+    #Check the transaction pool for valid transactions, remove the invalide ones
     transactionPool.validateTransactionS(state,clientKey)
     transactionPool.removeInvalidTransactions() #= [m for m in transactionPool.getTransactionPool() if m["Valid"] == True]
+
     while len(transactionPool) >= 5:
         print("Mining block....")
 
@@ -295,7 +366,6 @@ mineBlocks()
 for i in range(0,30):
    print("\n\n DEMO \n\n")
    demo()
-   mineBlocks()
 
 
 

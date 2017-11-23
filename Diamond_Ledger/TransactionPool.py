@@ -29,6 +29,9 @@ class TransactionPool:
         if len(indice) > 1:
             print("Cannot transfer same diamond twice!!")
             return False
+        if (transaction["Header"] != hashlib.sha256(transaction["Diamond"].getDiamond().encode('utf-8')).hexdigest() + transaction["Current Owner"] + transaction["Next Owner"]):
+            print("Header is not valid.")
+            return False
         headerHash = hashlib.sha256(transaction["Header"].encode('utf-8')).hexdigest()
         if not Key.verify(headerHash, transaction["Signature"], publicKey):
             print("Signature is not valid!")
@@ -39,6 +42,7 @@ class TransactionPool:
             return False
         if not (transaction["Diamond"].validateDiamond()):
             print("Diamond ID is not valid. Suspicion: tampered with the diamond values")
+            return False
         indice = []
         return True
 
@@ -46,10 +50,8 @@ class TransactionPool:
     # Remove all invalid transacionts
     def validateTransactionS(self, state,publicKey):
         for t in self.pool:
-            if t["Valid"] == False:
-                clientPublicKey = [i for i in publicKey if i[0] == t["Current Owner"]]
-                t["Valid"] = self.validateTransaction(t,state,clientPublicKey[0][1])
-        self.removeInvalidTransactions()
+            clientPublicKey = [i for i in publicKey if i[0] == t["Current Owner"]]
+            t["Valid"] = self.validateTransaction(t,state,clientPublicKey[0][1])
 
     def diamondExists(self, diamondId):
         for t in self.pool:
@@ -63,6 +65,9 @@ class TransactionPool:
     def removeTransactions(self, num = 5):
         del self.pool[0:num]
 
+    def removeLastTransaction(self):
+        del self.pool[-1]
+
     def __len__(self):
         return len(self.pool)
 
@@ -70,4 +75,6 @@ class TransactionPool:
         for i in self.pool:
             print(i)
 
+    def getLastTransaction(self):
+        return self.pool[-1]
 

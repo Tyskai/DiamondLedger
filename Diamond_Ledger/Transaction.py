@@ -29,4 +29,3 @@ class Transaction:
                 if ID == transactions[j]["Diamond"].getDID() or ID == transactions[j]["Current Owner"]:
                     transactionList.append((ID,transactions[j]["Next Owner"]))
         return transactionList
-

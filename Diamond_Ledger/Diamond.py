@@ -46,6 +46,9 @@ class Diamond:
     def getDID(self):
         return self.uID
 
+    def setDID(self, newID):
+        self.uID = newID
+
     def validateDiamond(self):
         message = "{0}{1}{2}{3}".format(str(self.color), str(self.clarity), str(self.cut), str(self.carat))
         checkID = createHash(message)
