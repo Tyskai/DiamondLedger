@@ -135,7 +135,7 @@ def hackATransaction(client):
     trans = transactionPool.getLastTransaction()
     transactionPool.removeLastTransaction()
     print("Tamper with transaction:")
-    printList(trans)
+    print(trans)
 
     trans["Next Owner"] = client.getAddress()
     transactionPool.addTransaction(trans)
