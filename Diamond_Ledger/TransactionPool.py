@@ -16,16 +16,24 @@ class TransactionPool:
         # first validate transaction then add
         self.pool.append(transaction)
 
-    def validateTransaction(self,transaction,state,publicKey):
+    def validateTransaction(self,transaction, state, publicKey):
+        indice = [i for i in TransactionPool.getTransactionPool(self) if
+                  i["Diamond"] == transaction["Diamond"] and i["Current Owner"] == transaction["Current Owner"] and
+                  i["Current Owner"] != i["Next Owner"]]
+        if len(indice) > 1:
+            print("Cannot transfer same diamond twice!!")
+            return False
         headerHash = hashlib.sha256(transaction["Header"].encode('utf-8')).hexdigest()
-        if not Key.verify(headerHash,transaction["Signature"],publicKey):
+        if not Key.verify(headerHash, transaction["Signature"], publicKey):
             print("Signature is not valid!")
             return False
-        if not (element for element in state.getState() if element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
+        if not (element for element in state.getState() if
+                element["Diamond"] == transaction["Diamond"] and element["Owner"] == transaction["Current Owner"]):
             print("Transaction is not valid")
             return False
-        if not( transaction["Diamond"].validateDiamond() ):
+        if not (transaction["Diamond"].validateDiamond()):
             print("Diamond ID is not valid. Suspicion: tampered with the diamond values")
+        indice = []
         return True
 
     # Valide all the transactions
@@ -53,3 +61,5 @@ class TransactionPool:
     def printPool(self):
         for i in self.pool:
             print(i)
+
+

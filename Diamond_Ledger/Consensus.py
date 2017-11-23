@@ -17,7 +17,7 @@ class Consensus:
 # leader calls this function to create candidate block
     def createCandidateBlock(self,parentHash,transactionPool):
         self.transactions = list()
-        for i in range(5):
+        for i in range(len(transactionPool.getTransactionPool())):
 
             if transactionPool.getTransactionPool()[i]["Valid"]:
                 self.transactions.append(transactionPool.getTransactionPool()[i]) # Transactions can be validated again
@@ -43,7 +43,7 @@ class Consensus:
         transactions = candidateBlock.getTransactions()
         for i in range(len(transactions)):
             clientPublicKey = [item for item in publicKey if item[0] == transactions[i]["Current Owner"]]
-            if not TransactionPool.validateTransaction(self, transactions[i],state,clientPublicKey[0][1]):
+            if not TransactionPool.validateTransaction(TransactionPool(),transactions[i],state,clientPublicKey[0][1]):
                 print("Transaction is invalidated by verifiers!")
                 return False
         blockContents = "{0}{1}{2}".format(str(candidateBlock.parentHash),str(candidateBlock.blockOrder),str(candidateBlock.transactions))
